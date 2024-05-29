@@ -1,0 +1,46 @@
+{
+    "name": "jobmetric/laravel-custom-field",
+    "description": "This is a custom field management package for Laravel that you can use in your projects.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "jobmetric",
+        "package",
+        "custom field",
+        "management"
+    ],
+    "homepage": "https://doc.jobmetric.net/package/laravel-custom-field",
+    "authors": [
+        {
+            "name": "Majid Mohammadian",
+            "email": "majeedmohammadian@gmail.com",
+            "homepage": "https://www.linkedin.com/in/majidmohammadian/",
+            "role": "Full Stack Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.1",
+        "laravel/framework": ">=9.19",
+        "jobmetric/laravel-package-core": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "JobMetric\\CustomField\\": "src/",
+            "JobMetric\\CustomField\\Factories\\": "database/factories/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JobMetric\\CustomField\\CustomFieldServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "support": {
+        "issues": "https://github.com/jobmetric/laravel-custom-field/issues",
+        "forum": "https://twitter.com/jobmetric",
+        "source": "https://github.com/jobmetric/laravel-custom-field"
+    }
+}
