@@ -5,7 +5,7 @@ namespace JobMetric\CustomField\Option;
 use JobMetric\CustomField\Exceptions\OptionEmptyLabelException;
 use Throwable;
 
-class Builder
+class OptionBuilder
 {
     /**
      * The Option instances
