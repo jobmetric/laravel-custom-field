@@ -2,18 +2,13 @@
 
 namespace JobMetric\CustomField\Fields;
 
+use JobMetric\CustomField\Attribute\HasPlaceholder;
 use Throwable;
 
 class Input implements FieldContract
 {
-    use BaseField;
-
-    /**
-     * the placeholder of the input field
-     *
-     * @var string $placeholder
-     */
-    protected string $placeholder;
+    use BaseField,
+        HasPlaceholder;
 
     /**
      * get the type of the field
@@ -36,19 +31,5 @@ class Input implements FieldContract
         return view('custom-field::input', [
             'field' => $this,
         ])->render();
-    }
-
-    /**
-     * Set the placeholder for the input field
-     *
-     * @param string $placeholder
-     *
-     * @return static
-     */
-    public function placeholder(string $placeholder): static
-    {
-        $this->placeholder = $placeholder;
-
-        return $this;
     }
 }
