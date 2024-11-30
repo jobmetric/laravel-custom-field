@@ -3,7 +3,16 @@
 namespace JobMetric\CustomField\Fields;
 
 use BadMethodCallException;
+use JobMetric\CustomField\Attribute\Data\HasData;
+use JobMetric\CustomField\Attribute\HasClass;
+use JobMetric\CustomField\Attribute\HasId;
+use JobMetric\CustomField\Attribute\HasName;
+use JobMetric\CustomField\Attribute\HasValue;
 use JobMetric\CustomField\Builder\CustomField;
+use JobMetric\CustomField\Property\HasAutoFocus;
+use JobMetric\CustomField\Property\HasDisable;
+use JobMetric\CustomField\Property\HasReadonly;
+use JobMetric\CustomField\Property\HasRequired;
 use Throwable;
 
 /**
@@ -23,26 +32,15 @@ use Throwable;
  */
 trait BaseField
 {
-    /**
-     * the name of the field
-     *
-     * @var string $name
-     */
-    protected string $name;
-
-    /**
-     * the id of the field
-     *
-     * @var string|null $id
-     */
-    protected string|null $id = null;
-
-    /**
-     * the class of the field
-     *
-     * @var string|null $class
-     */
-    protected string|null $class = null;
+    use HasName,
+        HasId,
+        HasClass,
+        HasValue,
+        HasData,
+        HasDisable,
+        HasAutoFocus,
+        HasReadonly,
+        HasRequired;
 
     /**
      * the label of the field
@@ -61,16 +59,23 @@ trait BaseField
     /**
      * the validation of the field
      *
-     * @var array|string|null $validation
+     * @var array|string $validation
      */
-    protected array|string|null $validation = null;
+    protected array|string $validation = '';
 
     /**
-     * the value of the field
+     * the attributes of the field
      *
-     * @var array|string|int|bool|null $value
+     * @var array $attributes
      */
-    protected array|string|int|bool|null $value = null;
+    protected array $attributes = [];
+
+    /**
+     * the properties of the field
+     *
+     * @var array $properties
+     */
+    protected array $properties = [];
 
     /**
      * the params of the field
@@ -85,48 +90,6 @@ trait BaseField
      * @var array $options
      */
     protected array $options = [];
-
-    /**
-     * set the name of the field
-     *
-     * @param string $name
-     *
-     * @return static
-     */
-    public function name(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * set the id of the field
-     *
-     * @param string $id
-     *
-     * @return static
-     */
-    public function id(string $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * set the class of the field
-     *
-     * @param string $class
-     *
-     * @return static
-     */
-    public function class(string $class): static
-    {
-        $this->class = $class;
-
-        return $this;
-    }
 
     /**
      * set the label of the field
@@ -171,72 +134,10 @@ trait BaseField
     }
 
     /**
-     * set the value of the field
-     *
-     * @param array|string|int|bool $value
-     *
-     * @return static
-     */
-    public function value(array|string|int|bool $value): static
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * set the disabled of the field
-     *
-     * @return static
-     */
-    public function disabled(): static
-    {
-        $this->params['disabled'] = true;
-
-        return $this;
-    }
-
-    /**
-     * set the readonly of the field
-     *
-     * @return static
-     */
-    public function readonly(): static
-    {
-        $this->params['readonly'] = true;
-
-        return $this;
-    }
-
-    /**
-     * set the required of the field
-     *
-     * @return static
-     */
-    public function required(): static
-    {
-        $this->params['required'] = true;
-
-        return $this;
-    }
-
-    /**
-     * set the autofocus of the field
-     *
-     * @return static
-     */
-    public function autofocus(): static
-    {
-        $this->params['autofocus'] = true;
-
-        return $this;
-    }
-
-    /**
      * get the property of the field
      *
      * @param string $name
-     * @param array  $arguments
+     * @param array $arguments
      *
      * @return mixed
      * @throws Throwable
@@ -276,14 +177,12 @@ trait BaseField
     {
         return new CustomField(
             $this->type(),
-            $this->name,
-            $this->id,
-            $this->class,
             $this->label,
             $this->info,
-            $this->placeholder,
             $this->validation,
-            $this->value,
+            $this->attributes,
+            $this->properties,
+            $this->data,
             $this->params,
             $this->options
         );
