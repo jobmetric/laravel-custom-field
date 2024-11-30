@@ -4,7 +4,7 @@ namespace JobMetric\CustomField\Builder;
 
 use JobMetric\CustomField\Fields\FieldContract;
 
-class Builder
+class CustomFieldBuilder
 {
     use BuilderInput,
         BuilderSelect;

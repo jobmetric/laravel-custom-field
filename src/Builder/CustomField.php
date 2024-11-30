@@ -12,25 +12,25 @@ class CustomField
     public string $type;
 
     /**
-     * Field name
+     * Field attributes
      *
-     * @var string $name
+     * @var array $attributes
      */
-    public string $name;
+    public array $attributes = [];
 
     /**
-     * Field id
+     * Field properties
      *
-     * @var string $id
+     * @var array $properties
      */
-    public string $id;
+    public array $properties = [];
 
     /**
-     * Field class
+     * Field data
      *
-     * @var string $class
+     * @var array $data
      */
-    public string $class;
+    public array $data = [];
 
     /**
      * Field label
@@ -47,25 +47,11 @@ class CustomField
     public string $info;
 
     /**
-     * Field placeholder
-     *
-     * @var string $placeholder
-     */
-    public string $placeholder;
-
-    /**
      * Field validation
      *
-     * @var string $validation
+     * @var array|string $validation
      */
-    public string $validation;
-
-    /**
-     * Field value
-     *
-     * @var array|string|int|bool $value
-     */
-    public array|string|int|bool $value;
+    public array|string $validation;
 
     /**
      * Field params
@@ -82,28 +68,24 @@ class CustomField
     public array $options = [];
 
     public function __construct(
-        string                $type,
-        string                $name,
-        string                $id,
-        string                $class,
-        string                $label,
-        string                $info,
-        string                $placeholder,
-        string                $validation,
-        array|string|int|bool $value,
-        array                 $params = [],
-        array                 $options = [],
+        string       $type,
+        string|null  $label,
+        string|null  $info,
+        array|string $validation,
+        array        $attributes = [],
+        array        $properties = [],
+        array        $data = [],
+        array        $params = [],
+        array        $options = [],
     )
     {
         $this->type = $type;
-        $this->name = $name;
-        $this->id = $id;
-        $this->class = $class;
         $this->label = $label;
         $this->info = $info;
-        $this->placeholder = $placeholder;
         $this->validation = $validation;
-        $this->value = $value;
+        $this->attributes = $attributes;
+        $this->properties = $properties;
+        $this->data = $data;
         $this->params = $params;
         $this->options = $options;
     }
