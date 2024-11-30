@@ -2,11 +2,14 @@
 
 namespace JobMetric\CustomField\Option;
 
+use Illuminate\Support\Traits\Macroable;
 use JobMetric\CustomField\Exceptions\OptionEmptyLabelException;
 use Throwable;
 
 class OptionBuilder
 {
+    use Macroable;
+
     /**
      * The Option instances
      *

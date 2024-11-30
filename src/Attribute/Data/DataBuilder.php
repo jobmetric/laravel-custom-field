@@ -2,11 +2,14 @@
 
 namespace JobMetric\CustomField\Attribute\Data;
 
+use Illuminate\Support\Traits\Macroable;
 use JobMetric\CustomField\Exceptions\OptionEmptyLabelException;
 use Throwable;
 
 class DataBuilder
 {
+    use Macroable;
+
     /**
      * The Data instances
      *
