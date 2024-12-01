@@ -16,4 +16,14 @@ class CustomFieldBuilder
         BuilderSelect;
 
     public static FieldContract $fieldContract;
+
+    /**
+     * Build the custom field.
+     *
+     * @return CustomField
+     */
+    public function build(): CustomField
+    {
+        return self::$fieldContract->build();
+    }
 }
