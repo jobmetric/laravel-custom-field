@@ -1,8 +1,6 @@
 <?php
 
-namespace JobMetric\CustomField\Builder;
-
-use JobMetric\CustomField\Fields\Input;
+namespace JobMetric\CustomField\Fields;
 
 trait BuilderInput
 {

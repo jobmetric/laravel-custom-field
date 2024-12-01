@@ -1,6 +1,6 @@
 <?php
 
-namespace JobMetric\CustomField\Builder;
+namespace JobMetric\CustomField;
 
 class CustomField
 {

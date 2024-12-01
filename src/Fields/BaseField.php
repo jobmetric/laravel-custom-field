@@ -8,7 +8,7 @@ use JobMetric\CustomField\Attribute\HasClass;
 use JobMetric\CustomField\Attribute\HasId;
 use JobMetric\CustomField\Attribute\HasName;
 use JobMetric\CustomField\Attribute\HasValue;
-use JobMetric\CustomField\Builder\CustomField;
+use JobMetric\CustomField\CustomField;
 use JobMetric\CustomField\Property\HasAutoFocus;
 use JobMetric\CustomField\Property\HasDisable;
 use JobMetric\CustomField\Property\HasReadonly;

@@ -1,8 +1,6 @@
 <?php
 
-namespace JobMetric\CustomField\Builder;
-
-use JobMetric\CustomField\Fields\Select;
+namespace JobMetric\CustomField\Fields;
 
 trait BuilderSelect
 {
