@@ -3,7 +3,7 @@
 namespace JobMetric\CustomField;
 
 use Illuminate\Support\Traits\Macroable;
-use JobMetric\CustomField\Fields\BuilderInput;
+use JobMetric\CustomField\Fields\BuilderText;
 use JobMetric\CustomField\Fields\BuilderNumber;
 use JobMetric\CustomField\Fields\BuilderSelect;
 use JobMetric\CustomField\Fields\FieldContract;
@@ -11,7 +11,7 @@ use JobMetric\CustomField\Fields\FieldContract;
 class CustomFieldBuilder
 {
     use Macroable,
-        BuilderInput,
+        BuilderText,
         BuilderNumber,
         BuilderSelect;
 
