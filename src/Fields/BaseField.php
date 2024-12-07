@@ -92,6 +92,23 @@ trait BaseField
     protected array $options = [];
 
     /**
+     * render the field as HTML
+     *
+     * @param array $replaces
+     *
+     * @return string
+     * @throws Throwable
+     */
+    public function render(array $replaces = []): string
+    {
+        $this->replacement = $replaces;
+
+        return view('custom-field::' . $this->type(), [
+            'field' => $this,
+        ])->render();
+    }
+
+    /**
      * set the label of the field
      *
      * @param string $label
@@ -131,6 +148,29 @@ trait BaseField
         $this->validation = $validation;
 
         return $this;
+    }
+
+    /**
+     * Get the attributes
+     *
+     * @return string
+     */
+    public function getAttributes(): string
+    {
+        $attributes = '';
+        if (!array_key_exists('class', $this->attributes)) {
+            $this->attributes['class'] = 'form-control';
+        }
+
+        foreach ($this->attributes as $key => $value) {
+            if ($key === 'placeholder') {
+                $value = trans($value);
+            }
+
+            $attributes .= " $key=\"$value\"";
+        }
+
+        return $attributes;
     }
 
     /**
