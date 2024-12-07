@@ -3,6 +3,7 @@
 namespace JobMetric\CustomField\Option;
 
 use Closure;
+use Illuminate\Support\Collection;
 use Throwable;
 
 trait HasOption
@@ -44,5 +45,27 @@ trait HasOption
         }
 
         return $this;
+    }
+
+    /**
+     * Get the options collection
+     *
+     * @return Collection
+     */
+    public function getOptions(): Collection
+    {
+        return collect($this->options);
+    }
+
+    /**
+     * Get the options render template
+     *
+     * @return string
+     */
+    public function getThemeOptions(): string
+    {
+        return collect($this->options)->map(function (Option $option) {
+            return $option->render();
+        })->implode('');
     }
 }
