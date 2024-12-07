@@ -8,11 +8,11 @@ namespace JobMetric\CustomField\Attribute;
 trait HasName
 {
     /**
-     * The name attribute for the field
+     * The replacement for the name attribute
      *
-     * @var string|null $name
+     * @var array $replacement
      */
-    protected string|null $name = null;
+    protected array $replacement = [];
 
     /**
      * Set the name attribute for the field
@@ -23,8 +23,28 @@ trait HasName
      */
     public function name(string|null $name): static
     {
-        $this->attributes['name'] = $name;
+        $this->params['name'] = $name;
 
         return $this;
+    }
+
+    /**
+     * Get the name attribute for the field
+     *
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        // Retrieve the name attribute
+        $name = $this->params['name'] ?? null;
+
+        // If name is set, replace parts of it based on the replacement array
+        if ($name !== null) {
+            foreach ($this->replacement as $search => $replace) {
+                $name = str_replace('{' . $search . '}', $replace, $name);
+            }
+        }
+
+        return $name;
     }
 }
