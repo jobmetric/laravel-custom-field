@@ -20,6 +20,8 @@ trait HasClass
      */
     public function class(string|null $class): static
     {
+        $this->class = $class;
+
         $this->attributes['class'] = $class;
 
         return $this;

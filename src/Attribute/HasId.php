@@ -23,6 +23,8 @@ trait HasId
      */
     public function id(string|null $id): static
     {
+        $this->id = $id;
+
         $this->attributes['id'] = $id;
 
         return $this;

@@ -23,6 +23,8 @@ trait HasPlaceholder
      */
     public function placeholder(string $placeholder): static
     {
+        $this->placeholder = $placeholder;
+
         $this->attributes['placeholder'] = $placeholder;
 
         return $this;

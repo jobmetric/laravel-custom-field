@@ -23,6 +23,8 @@ trait HasValue
      */
     public function value(array|string|int|bool|null $value): static
     {
+        $this->value = $value;
+
         $this->attributes['value'] = $value;
 
         return $this;
