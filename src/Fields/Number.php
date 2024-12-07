@@ -3,7 +3,6 @@
 namespace JobMetric\CustomField\Fields;
 
 use JobMetric\CustomField\Attribute\HasPlaceholder;
-use Throwable;
 
 class Number implements FieldContract
 {
@@ -18,18 +17,5 @@ class Number implements FieldContract
     private function type(): string
     {
         return 'number';
-    }
-
-    /**
-     * render the field as HTML
-     *
-     * @return string
-     * @throws Throwable
-     */
-    public function render(): string
-    {
-        return view('custom-field::number', [
-            'field' => $this,
-        ])->render();
     }
 }
