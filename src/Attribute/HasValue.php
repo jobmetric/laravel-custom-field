@@ -21,7 +21,7 @@ trait HasValue
      *
      * @return static
      */
-    public function value(array|string|int|bool|null $value): static
+    public function value(array|string|int|bool|null $value = null): static
     {
         $this->value = $value;
 
