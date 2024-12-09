@@ -4,6 +4,7 @@ namespace JobMetric\CustomField\Fields;
 
 use BadMethodCallException;
 use JobMetric\CustomField\Attribute\Data\HasData;
+use JobMetric\CustomField\Attribute\DisableAutoComplete;
 use JobMetric\CustomField\Attribute\HasClass;
 use JobMetric\CustomField\Attribute\HasId;
 use JobMetric\CustomField\Attribute\HasName;
@@ -40,7 +41,8 @@ trait BaseField
         HasDisable,
         HasAutoFocus,
         HasReadonly,
-        HasRequired;
+        HasRequired,
+        DisableAutoComplete;
 
     /**
      * the label of the field
