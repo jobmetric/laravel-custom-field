@@ -122,23 +122,40 @@ trait BaseField
     /**
      * render the field as HTML
      *
+     * @param array|string|int|bool|null $value
      * @param array $replaces
      * @param bool $showInfo
      * @param string $class
      * @param string|null $classParent
+     * @param bool $hasErrorTag
+     * @param string|null $errorTagClass
+     * @param string|null $prefixId
      *
      * @return string
      * @throws Throwable
      */
-    public function render(array $replaces = [], bool $showInfo = true, string $class = '', string $classParent = null): string
+    public function render(
+        array|string|int|bool|null $value = null,
+        array $replaces = [],
+        bool $showInfo = true,
+        string $class = '',
+        string $classParent = null,
+        bool $hasErrorTag = true,
+        string|null $errorTagClass = null,
+        string|null $prefixId = null
+    ): string
     {
         $this->replacement = $replaces;
+        $this->value($value);
         $this->class($class);
+        $this->id($prefixId);
 
         return view('custom-field::' . $this->type(), [
             'field' => $this,
             'showInfo' => $showInfo,
             'classParent' => $classParent,
+            'hasErrorTag' => $hasErrorTag,
+            'errorTagClass' => $errorTagClass,
         ])->render();
     }
 
