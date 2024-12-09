@@ -92,19 +92,51 @@ trait BaseField
     protected array $options = [];
 
     /**
+     * Instantiate the field
+     *
+     * @param string|null $label
+     * @param string|null $info
+     * @param array|string $validation
+     * @param array $attributes
+     * @param array $properties
+     * @param array $data
+     * @param array $params
+     * @param array $options
+     *
+     * @return void
+     */
+    public function instantiate(string|null $label, string|null $info, array|string $validation, array $attributes, array $properties, array $data, array $params, array $options): void
+    {
+        $this->label = $label;
+        $this->info = $info;
+        $this->validation = $validation;
+        $this->attributes = $attributes;
+        $this->properties = $properties;
+        $this->data = $data;
+        $this->params = $params;
+        $this->options = $options;
+    }
+
+    /**
      * render the field as HTML
      *
      * @param array $replaces
+     * @param bool $showInfo
+     * @param string $class
+     * @param string|null $classParent
      *
      * @return string
      * @throws Throwable
      */
-    public function render(array $replaces = []): string
+    public function render(array $replaces = [], bool $showInfo = true, string $class = '', string $classParent = null): string
     {
         $this->replacement = $replaces;
+        $this->class($class);
 
         return view('custom-field::' . $this->type(), [
             'field' => $this,
+            'showInfo' => $showInfo,
+            'classParent' => $classParent,
         ])->render();
     }
 

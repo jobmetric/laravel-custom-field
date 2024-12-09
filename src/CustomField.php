@@ -2,6 +2,8 @@
 
 namespace JobMetric\CustomField;
 
+use Throwable;
+
 class CustomField
 {
     /**
@@ -88,5 +90,34 @@ class CustomField
         $this->data = $data;
         $this->params = $params;
         $this->options = $options;
+    }
+
+    /**
+     * Render the field as HTML
+     *
+     * @param array $replaces
+     * @param bool $showInfo
+     * @param string $class
+     * @param string|null $classParent
+     *
+     * @return string
+     * @throws Throwable
+     */
+    public function render(array $replaces = [], bool $showInfo = true, string $class = '', string $classParent = null): string
+    {
+        $fieldInstance = FieldFactory::create($this->type);
+
+        $fieldInstance->instantiate(
+            $this->label,
+            $this->info,
+            $this->validation,
+            $this->attributes,
+            $this->properties,
+            $this->data,
+            $this->params,
+            $this->options,
+        );
+
+        return $fieldInstance->render($replaces, $showInfo, $class, $classParent);
     }
 }
