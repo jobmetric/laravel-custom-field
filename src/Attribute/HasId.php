@@ -23,9 +23,11 @@ trait HasId
      */
     public function id(string|null $id): static
     {
-        $this->id = $id;
+        $uniqName = $this->params['uniqName'] ?? '';
 
-        $this->attributes['id'] = $id;
+        $this->id = $id . '_' . $uniqName;
+
+        $this->attributes['id'] = $id . '_' . $uniqName;
 
         return $this;
     }
