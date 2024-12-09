@@ -9,7 +9,7 @@ trait HasClass
      *
      * @var string|null $class
      */
-    protected string|null $class = null;
+    protected string|null $class = 'form-control';
 
     /**
      * Set the class attribute for the field
@@ -20,9 +20,13 @@ trait HasClass
      */
     public function class(string|null $class): static
     {
-        $this->class = $class;
+        $this->class .= ' ' . $class;
 
-        $this->attributes['class'] = $class;
+        if (isset($this->attributes['class'])) {
+            $this->attributes['class'] .= ' ' . $class;
+        } else {
+            $this->attributes['class'] = 'form-control ' . $class;
+        }
 
         return $this;
     }
