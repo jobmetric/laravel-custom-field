@@ -18,12 +18,14 @@ trait HasName
      * Set the name attribute for the field
      *
      * @param string|null $name
+     * @param string|null $uniqName
      *
      * @return static
      */
-    public function name(string|null $name): static
+    public function name(string|null $name, string|null $uniqName = null): static
     {
         $this->params['name'] = $name;
+        $this->params['uniqName'] = $uniqName;
 
         return $this;
     }
@@ -43,6 +45,22 @@ trait HasName
             foreach ($this->replacement as $search => $replace) {
                 $name = str_replace('{' . $search . '}', $replace, $name);
             }
+        }
+
+        return $name;
+    }
+
+    /**
+     * Get the name dot attribute for the field
+     *
+     * @return string|null
+     */
+    public function getNameDot(): ?string
+    {
+        $name = $this->getName();
+
+        if ($name !== null) {
+            $name = str_replace(['[', ']'], ['.', ''], $name);
         }
 
         return $name;
