@@ -100,7 +100,8 @@ class CustomField
      * @param bool $showInfo
      * @param string $class
      * @param string|null $classParent
-     * @param bool $hasErrorTag
+     * @param bool $hasErrorTagFrom
+     * @param bool $hasErrorTagJs
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
@@ -113,7 +114,8 @@ class CustomField
         bool $showInfo = true,
         string $class = '',
         string $classParent = null,
-        bool $hasErrorTag = true,
+        bool $hasErrorTagForm = false,
+        bool $hasErrorTagJs = false,
         string|null $errorTagClass = null,
         string|null $prefixId = null
     ): string
@@ -131,6 +133,6 @@ class CustomField
             $this->options,
         );
 
-        return $fieldInstance->render($value, $replaces, $showInfo, $class, $classParent, $hasErrorTag, $errorTagClass, $prefixId);
+        return $fieldInstance->render($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
     }
 }

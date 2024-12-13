@@ -127,7 +127,8 @@ trait BaseField
      * @param bool $showInfo
      * @param string $class
      * @param string|null $classParent
-     * @param bool $hasErrorTag
+     * @param bool $hasErrorTagForm
+     * @param bool $hasErrorTagJs
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
@@ -136,13 +137,14 @@ trait BaseField
      */
     public function render(
         array|string|int|bool|null $value = null,
-        array $replaces = [],
-        bool $showInfo = true,
-        string $class = '',
-        string $classParent = null,
-        bool $hasErrorTag = true,
-        string|null $errorTagClass = null,
-        string|null $prefixId = null
+        array                      $replaces = [],
+        bool                       $showInfo = true,
+        string                     $class = '',
+        string                     $classParent = null,
+        bool                       $hasErrorTagForm = true,
+        bool                       $hasErrorTagJs = true,
+        string|null                $errorTagClass = null,
+        string|null                $prefixId = null
     ): string
     {
         $this->replacement = $replaces;
@@ -154,7 +156,8 @@ trait BaseField
             'field' => $this,
             'showInfo' => $showInfo,
             'classParent' => $classParent,
-            'hasErrorTag' => $hasErrorTag,
+            'hasErrorTagForm' => $hasErrorTagForm,
+            'hasErrorTagJs' => $hasErrorTagJs,
             'errorTagClass' => $errorTagClass,
         ])->render();
     }
