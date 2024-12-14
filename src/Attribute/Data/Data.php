@@ -41,11 +41,21 @@ class Data
     /**
      * Render the data as HTML.
      *
+     * @param array $replacement
+     *
      * @return string
      * @throws Throwable
      */
-    public function render(): string
+    public function render(array $replacement = []): string
     {
-        return ' data-' . Str::kebab($this->name) . '="' . $this->value . '"';
+        // If name is set, replace parts of it based on the replacement array
+        $value = null;
+        if ($this->value !== null) {
+            foreach ($replacement as $search => $replace) {
+                $value = str_replace('{' . $search . '}', $replace, $this->value);
+            }
+        }
+
+        return ' data-' . Str::kebab($this->name) . '="' . $value . '"';
     }
 }

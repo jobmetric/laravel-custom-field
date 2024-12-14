@@ -2,6 +2,9 @@
 
 namespace JobMetric\CustomField\Attribute;
 
+use JobMetric\CustomField\Attribute\Data\DataBuilder;
+use Throwable;
+
 /**
  * @property array $attributes
  */
@@ -21,11 +24,16 @@ trait HasName
      * @param string|null $uniqName
      *
      * @return static
+     * @throws Throwable
      */
     public function name(string|null $name, string|null $uniqName = null): static
     {
         $this->params['name'] = $name;
         $this->params['uniqName'] = $uniqName;
+
+        $this->data(function (DataBuilder $builder) {
+            $builder->name('name')->value($this->getNameDot());
+        });
 
         return $this;
     }

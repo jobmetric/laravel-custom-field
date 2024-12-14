@@ -3,6 +3,8 @@
 namespace JobMetric\CustomField\Attribute\Data;
 
 use Closure;
+use Illuminate\Support\Collection;
+use JobMetric\CustomField\Option\Option;
 use Throwable;
 
 trait HasData
@@ -40,5 +42,27 @@ trait HasData
         }
 
         return $this;
+    }
+
+    /**
+     * Get the data collection
+     *
+     * @return Collection
+     */
+    public function getData(): Collection
+    {
+        return collect($this->data);
+    }
+
+    /**
+     * Get the data render template
+     *
+     * @return string
+     */
+    public function getThemeData(): string
+    {
+        return $this->getData()->map(function (Data $data) {
+            return $data->render($this->replacement);
+        })->implode('');
     }
 }
