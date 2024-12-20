@@ -17,7 +17,6 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
     public function configuration(PackageCore $package): void
     {
         $package->name('laravel-custom-field')
-            ->hasConfig()
             ->hasTranslation()
             ->hasView();
     }
