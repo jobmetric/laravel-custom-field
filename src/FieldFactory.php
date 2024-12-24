@@ -4,6 +4,7 @@ namespace JobMetric\CustomField;
 
 use Exception;
 use JobMetric\CustomField\Fields\FieldContract;
+use JobMetric\CustomField\Fields\Hidden;
 use JobMetric\CustomField\Fields\Number;
 use JobMetric\CustomField\Fields\Select;
 use JobMetric\CustomField\Fields\Text;
@@ -23,6 +24,7 @@ class FieldFactory
             'number' => new Number,
             'text' => new Text,
             'select' => new Select,
+            'hidden' => new Hidden,
             default => throw new Exception("Unsupported field type: $type"),
         };
     }
