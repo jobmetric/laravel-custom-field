@@ -9,7 +9,7 @@
             <div class="text-gray-600 fs-7 d-none d-md-block d-lg-none d-xl-block">{!! trans($field->getInfo()) !!}</div>
         @endif
     </label>
-    <input type="number" name="{{ $field->getName() }}"{!! $field->getAttributes() !!}{!! $field->getThemeData() !!}>
+    <input type="number" name="{{ $field->getName() }}"{!! $field->getAttributeTheme() !!}{!! $field->getThemeData() !!}>
     @if($showInfo)
         <div class="text-gray-600 fs-7 mt-2 d-md-none d-lg-block d-xl-none">{!! trans($field->getInfo()) !!}</div>
     @endif

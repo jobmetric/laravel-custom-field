@@ -61,9 +61,9 @@ trait BaseField
     /**
      * the validation of the field
      *
-     * @var array|string $validation
+     * @var array|string|null $validation
      */
-    protected array|string $validation = '';
+    protected array|string|null $validation = null;
 
     /**
      * the attributes of the field
@@ -98,7 +98,7 @@ trait BaseField
      *
      * @param string|null $label
      * @param string|null $info
-     * @param array|string $validation
+     * @param array|string|null $validation
      * @param array $attributes
      * @param array $properties
      * @param array $data
@@ -107,7 +107,7 @@ trait BaseField
      *
      * @return void
      */
-    public function instantiate(string|null $label, string|null $info, array|string $validation, array $attributes, array $properties, array $data, array $params, array $options): void
+    public function instantiate(string|null $label, string|null $info, array|string|null $validation, array $attributes, array $properties, array $data, array $params, array $options): void
     {
         $this->label = $label;
         $this->info = $info;
@@ -136,21 +136,30 @@ trait BaseField
      * @throws Throwable
      */
     public function render(
-        array|string|int|bool|null $value = null,
+        array|string|int|bool|null $value = 'undefined',
         array                      $replaces = [],
         bool                       $showInfo = true,
-        string                     $class = '',
+        string                     $class = 'undefined',
         string                     $classParent = null,
         bool                       $hasErrorTagForm = true,
         bool                       $hasErrorTagJs = true,
         string|null                $errorTagClass = null,
-        string|null                $prefixId = null
+        string|null                $prefixId = 'undefined'
     ): string
     {
         $this->replacement = $replaces;
-        $this->value($value);
-        $this->class($class);
-        $this->id($prefixId);
+
+        if ($value != 'undefined') {
+            $this->value($value);
+        }
+
+        if ($class != 'undefined') {
+            $this->class($class);
+        }
+
+        if ($prefixId != 'undefined') {
+            $this->id($prefixId);
+        }
 
         return view('custom-field::' . $this->type(), [
             'field' => $this,
@@ -205,11 +214,11 @@ trait BaseField
     }
 
     /**
-     * Get the attributes
+     * Get the attribute theme
      *
      * @return string
      */
-    public function getAttributes(): string
+    public function getAttributeTheme(): string
     {
         $attributes = '';
         if (!array_key_exists('class', $this->attributes)) {

@@ -51,9 +51,9 @@ class CustomField
     /**
      * Field validation
      *
-     * @var array|string $validation
+     * @var array|string|null $validation
      */
-    public array|string $validation;
+    public array|string|null $validation = null;
 
     /**
      * Field params
@@ -73,7 +73,7 @@ class CustomField
         string       $type,
         string|null  $label,
         string|null  $info,
-        array|string $validation,
+        array|string $validation = null,
         array        $attributes = [],
         array        $properties = [],
         array        $data = [],
@@ -100,7 +100,7 @@ class CustomField
      * @param bool $showInfo
      * @param string $class
      * @param string|null $classParent
-     * @param bool $hasErrorTagFrom
+     * @param bool $hasErrorTagForm
      * @param bool $hasErrorTagJs
      * @param string|null $errorTagClass
      * @param string|null $prefixId
@@ -109,15 +109,15 @@ class CustomField
      * @throws Throwable
      */
     public function render(
-        array|string|int|bool|null $value = null,
+        array|string|int|bool|null $value = 'undefined',
         array $replaces = [],
         bool $showInfo = true,
-        string $class = '',
+        string $class = 'undefined',
         string $classParent = null,
         bool $hasErrorTagForm = false,
         bool $hasErrorTagJs = false,
         string|null $errorTagClass = null,
-        string|null $prefixId = null
+        string|null $prefixId = 'undefined'
     ): string
     {
         $fieldInstance = FieldFactory::create($this->type);

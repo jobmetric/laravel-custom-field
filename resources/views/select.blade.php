@@ -9,7 +9,7 @@
             <div class="text-gray-600 fs-7 d-none d-md-block d-lg-none d-xl-block">{!! trans($field->getInfo()) !!}</div>
         @endif
     </label>
-    <select name="{{ $field->getName() }}"{!! $field->getAttributes() !!}{!! $field->getThemeData() !!}>
+    <select name="{{ $field->getName() }}"{!! $field->getAttributeTheme() !!}{!! $field->getThemeData() !!}>
         {!! $field->getThemeOptions() !!}
     </select>
     @if($showInfo)
