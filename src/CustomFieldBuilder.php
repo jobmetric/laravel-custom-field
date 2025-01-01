@@ -3,6 +3,10 @@
 namespace JobMetric\CustomField;
 
 use Illuminate\Support\Traits\Macroable;
+use JobMetric\CustomField\Fields\BuilderColor;
+use JobMetric\CustomField\Fields\BuilderDate;
+use JobMetric\CustomField\Fields\BuilderDateTimeLocal;
+use JobMetric\CustomField\Fields\BuilderEmail;
 use JobMetric\CustomField\Fields\BuilderHidden;
 use JobMetric\CustomField\Fields\BuilderNumber;
 use JobMetric\CustomField\Fields\BuilderSelect;
@@ -15,7 +19,11 @@ class CustomFieldBuilder
         BuilderText,
         BuilderNumber,
         BuilderSelect,
-        BuilderHidden;
+        BuilderHidden,
+        BuilderDate,
+        BuilderDateTimeLocal,
+        BuilderEmail,
+        BuilderColor;
 
     public static FieldContract $fieldContract;
 
