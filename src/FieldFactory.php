@@ -3,6 +3,10 @@
 namespace JobMetric\CustomField;
 
 use Exception;
+use JobMetric\CustomField\Fields\Color;
+use JobMetric\CustomField\Fields\Date;
+use JobMetric\CustomField\Fields\DateTimeLocal;
+use JobMetric\CustomField\Fields\Email;
 use JobMetric\CustomField\Fields\FieldContract;
 use JobMetric\CustomField\Fields\Hidden;
 use JobMetric\CustomField\Fields\Number;
@@ -25,6 +29,10 @@ class FieldFactory
             'text' => new Text,
             'select' => new Select,
             'hidden' => new Hidden,
+            'date'=> new Date,
+            'datetime-local'=> new DateTimeLocal,
+            'color'=> new Color,
+            'email'=> new Email,
             default => throw new Exception("Unsupported field type: $type"),
         };
     }
