@@ -278,6 +278,8 @@ trait BaseField
      */
     public function build(): CustomField
     {
+        $this->beForBuild();
+        
         return new CustomField(
             $this->type(),
             $this->label,
@@ -289,5 +291,10 @@ trait BaseField
             $this->params,
             $this->options
         );
+    }
+
+    public function beForBuild():void
+    {
+
     }
 }
