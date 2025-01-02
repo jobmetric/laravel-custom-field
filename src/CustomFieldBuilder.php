@@ -11,6 +11,7 @@ use JobMetric\CustomField\Fields\BuilderHidden;
 use JobMetric\CustomField\Fields\BuilderMonth;
 use JobMetric\CustomField\Fields\BuilderNumber;
 use JobMetric\CustomField\Fields\BuilderPassword;
+use JobMetric\CustomField\Fields\BuilderRange;
 use JobMetric\CustomField\Fields\BuilderSelect;
 use JobMetric\CustomField\Fields\BuilderText;
 use JobMetric\CustomField\Fields\FieldContract;
@@ -27,6 +28,7 @@ class CustomFieldBuilder
         BuilderEmail,
         BuilderMonth,
         BuilderPassword,
+        BuilderRange,
         BuilderColor;
 
     public static FieldContract $fieldContract;
