@@ -12,6 +12,7 @@ use JobMetric\CustomField\Fields\FieldContract;
 use JobMetric\CustomField\Fields\Hidden;
 use JobMetric\CustomField\Fields\Month;
 use JobMetric\CustomField\Fields\Number;
+use JobMetric\CustomField\Fields\Range;
 use JobMetric\CustomField\Fields\Select;
 use JobMetric\CustomField\Fields\Text;
 
@@ -36,6 +37,7 @@ class FieldFactory
             'datetime-local'=> new DateTimeLocal,
             'color'=> new Color,
             'month'=> new Month,
+            'range'=> new Range,
             'password'=> new Password,
             'email'=> new Email,
             default => throw new Exception("Unsupported field type: $type"),
