@@ -1,4 +1,8 @@
-<div class="{{ $classParent ?? 'mb-10' }}">
+@php
+$width = $field->getAttribute('width') ? "width: {$field->getAttribute('width')}px; " : '';
+$height = $field->getAttribute('height') ? "height: {$field->getAttribute('height')}px; " : '';
+@endphp
+<div class="{{ $classParent ?? 'mb-10' }}" style="{{ $width .$height }}">
     <label class="form-label d-flex justify-content-between align-items-center">
         @if($field->hasRequired())
             <span class="required">{!! trans($field->getLabel()) !!}</span>
