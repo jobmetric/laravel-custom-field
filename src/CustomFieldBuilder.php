@@ -12,6 +12,7 @@ use JobMetric\CustomField\Fields\BuilderImage;
 use JobMetric\CustomField\Fields\BuilderMonth;
 use JobMetric\CustomField\Fields\BuilderNumber;
 use JobMetric\CustomField\Fields\BuilderPassword;
+use JobMetric\CustomField\Fields\BuilderRadio;
 use JobMetric\CustomField\Fields\BuilderRange;
 use JobMetric\CustomField\Fields\BuilderSelect;
 use JobMetric\CustomField\Fields\BuilderTel;
@@ -37,6 +38,7 @@ class CustomFieldBuilder
         BuilderWeek,
         BuilderTel,
         BuilderImage,
+        BuilderRadio,
         BuilderColor;
 
     public static FieldContract $fieldContract;

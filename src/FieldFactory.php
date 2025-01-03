@@ -13,6 +13,7 @@ use JobMetric\CustomField\Fields\FieldContract;
 use JobMetric\CustomField\Fields\Hidden;
 use JobMetric\CustomField\Fields\Month;
 use JobMetric\CustomField\Fields\Number;
+use JobMetric\CustomField\Fields\Radio;
 use JobMetric\CustomField\Fields\Range;
 use JobMetric\CustomField\Fields\Select;
 use JobMetric\CustomField\Fields\Tel;
@@ -47,6 +48,7 @@ class FieldFactory
             'password'=> new Password,
             'email'=> new Email,
             'tel'=> new Tel,
+            'radio'=> new Radio,
             'image'=> new Image,
             default => throw new Exception("Unsupported field type: $type"),
         };
