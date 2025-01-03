@@ -69,6 +69,13 @@ class CustomField
      */
     public array $options = [];
 
+    /**
+     * Field images
+     *
+     * @var array $images
+     */
+    public array $images = [];
+
     public function __construct(
         string       $type,
         string|null  $label,
@@ -79,6 +86,7 @@ class CustomField
         array        $data = [],
         array        $params = [],
         array        $options = [],
+        array        $images = [],
     )
     {
         $this->type = $type;
@@ -90,6 +98,7 @@ class CustomField
         $this->data = $data;
         $this->params = $params;
         $this->options = $options;
+        $this->images = $images;
     }
 
     /**
@@ -131,6 +140,7 @@ class CustomField
             $this->data,
             $this->params,
             $this->options,
+            $this->images
         );
 
         return $fieldInstance->render($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
