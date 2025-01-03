@@ -19,13 +19,35 @@ class Option
 {
     use HasData;
 
+    public string $type;
+    public string $name;
     public string $label;
+    public string $discription;
+    public string $metaInfo;
+    public string $extraContent;
+    public string $tag;
     public string|int|bool $value;
     public bool $selected = false;
 
-    public function __construct(string $label, string|int|bool $value, bool $selected = false)
+    public function __construct(
+        string $type, 
+        string $name, 
+        string $label, 
+        string $discription, 
+        string $metaInfo, 
+        string $extraContent, 
+        string $tag, 
+        string|int|bool $value, 
+        bool $selected = false
+        )
     {
+        $this->type = $type;
+        $this->name = $name;
         $this->label = $label;
+        $this->discription = $discription;
+        $this->metaInfo = $metaInfo;
+        $this->extraContent = $extraContent;
+        $this->tag = $tag;
         $this->value = $value;
         $this->selected = $selected;
     }
@@ -38,9 +60,21 @@ class Option
      */
     public function render(): string
     {
-        return view('custom-field::option', [
-            'field' => $this,
-        ])->render();
+        switch ($this->type) {
+            case 'radio':
+                return view('custom-field::optionRadio', [
+                    'field' => $this,
+                ])->render();
+            case 'checkBox':
+                return view('custom-field::optionCheckBox', [
+                    'field' => $this,
+                ])->render();
+            default:
+                return view('custom-field::option', [
+                    'field' => $this,
+                ])->render();
+        }
+
     }
 
     /**
