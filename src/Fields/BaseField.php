@@ -94,6 +94,13 @@ trait BaseField
     protected array $options = [];
 
     /**
+     * the images of the field
+     *
+     * @var array $images
+     */
+    protected array $images = [];
+
+    /**
      * Instantiate the field
      *
      * @param string|null $label
@@ -104,10 +111,11 @@ trait BaseField
      * @param array $data
      * @param array $params
      * @param array $options
+     * @param array $images
      *
      * @return void
      */
-    public function instantiate(string|null $label, string|null $info, array|string|null $validation, array $attributes, array $properties, array $data, array $params, array $options): void
+    public function instantiate(string|null $label, string|null $info, array|string|null $validation, array $attributes, array $properties, array $data, array $params, array $options, array $images): void
     {
         $this->label = $label;
         $this->info = $info;
@@ -117,6 +125,7 @@ trait BaseField
         $this->data = $data;
         $this->params = $params;
         $this->options = $options;
+        $this->images = $images;
     }
 
     /**
@@ -237,6 +246,28 @@ trait BaseField
     }
 
     /**
+     * Get the value of a specific attribute
+     *
+     * @param string|null $key
+     * @param mixed $default
+     * 
+     * @return mixed
+     * @throws Throwable
+     */
+    public function getAttribute(string|null $key = null)
+    {
+        if(is_null($key)) {
+            return $this->attributes;
+        }
+
+        if(!array_key_exists($key,$this->attributes)){
+            throw new BadMethodCallException("attributes '$key' does not exist");
+        }
+        
+        return $this->attributes[$key];
+    }
+
+    /**
      * get the property of the field
      *
      * @param string $name
@@ -289,7 +320,8 @@ trait BaseField
             $this->properties,
             $this->data,
             $this->params,
-            $this->options
+            $this->options,
+            $this->images
         );
     }
 
