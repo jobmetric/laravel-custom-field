@@ -5,13 +5,13 @@ namespace JobMetric\CustomField\Fields;
 trait BuilderMonth
 {
     /**
-     * Date field
+     * Month field
      *
      * @return month
      */
     public static function month(): month
     {
-        self::$fieldContract = new Date;
+        self::$fieldContract = new Month;
 
         return self::$fieldContract;
     }
