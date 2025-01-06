@@ -2,19 +2,15 @@
 
 namespace JobMetric\CustomField\Fields;
 
-use JobMetric\CustomField\Attribute\HasClass;
-use JobMetric\CustomField\Attribute\HasId;
-use JobMetric\CustomField\Attribute\HasName;
-use JobMetric\CustomField\Attribute\HasValue;
+use JobMetric\CustomField\Option\HasOption;
+use JobMetric\CustomField\Property\HasMultiple;
 
 
 class Radio implements FieldContract
 {
     use BaseField,
-        HasName,
-        HasValue,
-        HasClass,
-        HasId;
+        HasOption,
+        HasMultiple;
 
 
 
@@ -25,6 +21,6 @@ class Radio implements FieldContract
      */
     private function type(): string
     {
-        return 'radio';
+        return 'radioAndCheckbox';
     }
 }

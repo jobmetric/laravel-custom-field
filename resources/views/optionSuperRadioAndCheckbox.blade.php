@@ -1,6 +1,9 @@
 <label
-    class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6
-    @if ($field->selected)
+    class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active d-flex flex-stack text-start p-6 mb-6
+    @if (strtolower($field->type) === 'radio')
+        btn-active-primary
+    @endif
+    @if ($field->selected && strtolower($field->type) === 'radio')
     active
     @endif "
     data-bs-toggle="tab"
