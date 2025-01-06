@@ -18,6 +18,13 @@ class OptionBuilder
     protected array $options;
 
     /**
+     * mode of the option
+     *
+     * @var string $mode
+     */
+    protected string $mode = 'normal';
+
+    /**
      * type of the option
      *
      * @var string $type
@@ -80,6 +87,20 @@ class OptionBuilder
      */
     protected bool $selected = false;
 
+    /**
+     * Set the mode for the option.
+     *
+     * @param string $mode
+     *
+     * @return static
+     */
+    public function mode(string $mode): static
+    {
+        $this->mode = $mode;
+
+        return $this;
+    } 
+    
     /**
      * Set the type for the option.
      *
@@ -218,6 +239,7 @@ class OptionBuilder
         }
 
         $option = new Option(
+            $this->mode,
             $this->type,
             $this->name,
             $this->label,

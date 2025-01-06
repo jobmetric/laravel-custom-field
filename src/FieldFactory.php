@@ -48,7 +48,7 @@ class FieldFactory
             'password'=> new Password,
             'email'=> new Email,
             'tel'=> new Tel,
-            'radio'=> new Radio,
+            'radioAndCheckbox'=> new Radio,
             'image'=> new Image,
             default => throw new Exception("Unsupported field type: $type"),
         };
