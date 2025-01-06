@@ -9,7 +9,13 @@
             <div class="text-gray-600 fs-7 d-none d-md-block d-lg-none d-xl-block">{!! trans($field->getInfo()) !!}</div>
         @endif
     </label>
-    <input type="time" name="{{ $field->getName() }}"{!! $field->getAttributeTheme() !!}>
+    <!-- <input type="time" name="{{ $field->getName() }}"{!! $field->getAttributeTheme() !!}> -->
+    <div class="input-group" id="kt_td_picker_time_only" data-td-target-input="nearest" data-td-target-toggle="nearest">
+        <input id="kt_td_picker_time_only_input" type="text" class="form-control" data-td-target="#kt_td_picker_time_only"/>
+        <span class="input-group-text" data-td-target="#kt_td_picker_time_only" data-td-toggle="datetimepicker">
+            <i class="ki-duotone ki-calendar fs-2"><span class="path1"></span><span class="path2"></span></i>
+        </span>
+    </div>
     @if($showInfo)
         <div class="text-gray-600 fs-7 mt-2 d-md-none d-lg-block d-xl-none">{!! trans($field->getInfo()) !!}</div>
     @endif
