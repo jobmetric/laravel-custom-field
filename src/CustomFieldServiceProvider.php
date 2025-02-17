@@ -2,6 +2,8 @@
 
 namespace JobMetric\CustomField;
 
+use Illuminate\Support\Facades\Blade;
+use JobMetric\CustomField\View\Components\Text;
 use JobMetric\PackageCore\Exceptions\ViewFolderNotFoundException;
 use JobMetric\PackageCore\PackageCore;
 use JobMetric\PackageCore\PackageCoreServiceProvider;
@@ -19,5 +21,16 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
         $package->name('laravel-custom-field')
             ->hasTranslation()
             ->hasView();
+    }
+
+    /**
+     * After Boot Package
+     *
+     * @return void
+     */
+    public function afterBootPackage(): void
+    {
+        // add alias for components
+        Blade::component(Text::class, 'text-field');
     }
 }
