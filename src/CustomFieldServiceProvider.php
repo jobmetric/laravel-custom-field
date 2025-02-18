@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use JobMetric\CustomField\View\Components\Checkbox;
 use JobMetric\CustomField\View\Components\ErrorForm;
 use JobMetric\CustomField\View\Components\ErrorJs;
+use JobMetric\CustomField\View\Components\Number;
 use JobMetric\CustomField\View\Components\Text;
 use JobMetric\PackageCore\Exceptions\ViewFolderNotFoundException;
 use JobMetric\PackageCore\PackageCore;
@@ -35,6 +36,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
     {
         // add alias for components
         Blade::component(Text::class, 'text-field');
+        Blade::component(Number::class, 'number-field');
         Blade::component('custom-field::components.checkbox_radio_parent_inline', 'checkbox-radio-parent-inline');
         Blade::component(Checkbox::class, 'checkbox-field');
         Blade::component(ErrorJs::class, 'error-js');
