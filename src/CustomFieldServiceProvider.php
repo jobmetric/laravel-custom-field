@@ -3,6 +3,7 @@
 namespace JobMetric\CustomField;
 
 use Illuminate\Support\Facades\Blade;
+use JobMetric\CustomField\View\Components\Checkbox;
 use JobMetric\CustomField\View\Components\ErrorForm;
 use JobMetric\CustomField\View\Components\ErrorJs;
 use JobMetric\CustomField\View\Components\Text;
@@ -34,6 +35,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
     {
         // add alias for components
         Blade::component(Text::class, 'text-field');
+        Blade::component(Checkbox::class, 'checkbox-field');
         Blade::component(ErrorJs::class, 'error-js');
         Blade::component(ErrorForm::class, 'error-form');
     }
