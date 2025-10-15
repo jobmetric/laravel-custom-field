@@ -18,11 +18,25 @@ class OptionBuilder
     protected array $options;
 
     /**
-     * Value of the option
+     * mode of the option
      *
-     * @var string|int|bool $value
+     * @var string $mode
      */
-    protected string|int|bool $value = '';
+    protected string $mode = 'normal';
+
+    /**
+     * type of the option
+     *
+     * @var string $type
+     */
+    protected string $type = 'selectBox';
+
+    /**
+     * name of the option
+     *
+     * @var string $name
+     */
+    protected string $name = '';
 
     /**
      * Label of the option
@@ -32,11 +46,89 @@ class OptionBuilder
     protected string $label = '';
 
     /**
+     * discription of the option
+     *
+     * @var string $discription
+     */
+    protected string $discription = '';
+
+    /**
+     * metaInfo of the option
+     *
+     * @var string $metaInfo
+     */
+    protected string $metaInfo = '';
+
+    /**
+     * extraContent of the option
+     *
+     * @var string $extraContent
+     */
+    protected string $extraContent = '';
+
+    /**
+     * tag of the option
+     *
+     * @var string $tag
+     */
+    protected string $tag = '';
+
+    /**
+     * Value of the option
+     *
+     * @var string|int|bool $value
+     */
+    protected string|int|bool $value = '';
+
+    /**
      * Selected status of the option
      *
      * @var bool $selected
      */
     protected bool $selected = false;
+
+    /**
+     * Set the mode for the option.
+     *
+     * @param string $mode
+     *
+     * @return static
+     */
+    public function mode(string $mode): static
+    {
+        $this->mode = $mode;
+
+        return $this;
+    } 
+    
+    /**
+     * Set the type for the option.
+     *
+     * @param string $type
+     *
+     * @return static
+     */
+    public function type(string $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+
+    /**
+     * Set the name for the option.
+     *
+     * @param string $name
+     *
+     * @return static
+     */
+    public function name(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 
     /**
      * Set the label for the option.
@@ -48,6 +140,62 @@ class OptionBuilder
     public function label(string $label): static
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Set the discription for the option.
+     *
+     * @param string $discription
+     *
+     * @return static
+     */
+    public function discription(string $discription): static
+    {
+        $this->discription = $discription;
+
+        return $this;
+    }
+
+    /**
+     * Set the metaInfo for the option.
+     *
+     * @param string $metaInfo
+     *
+     * @return static
+     */
+    public function metaInfo(string $metaInfo): static
+    {
+        $this->metaInfo = $metaInfo;
+
+        return $this;
+    }
+
+    /**
+     * Set the extraContent for the option.
+     *
+     * @param string $extraContent
+     *
+     * @return static
+     */
+    public function extraContent(string $extraContent): static
+    {
+        $this->extraContent = $extraContent;
+
+        return $this;
+    }
+
+    /**
+     * Set the tag for the option.
+     *
+     * @param string $tag
+     *
+     * @return static
+     */
+    public function tag(string $tag): static
+    {
+        $this->tag = $tag;
 
         return $this;
     }
@@ -90,7 +238,18 @@ class OptionBuilder
             throw new OptionEmptyLabelException();
         }
 
-        $option = new Option($this->label, $this->value, $this->selected);
+        $option = new Option(
+            $this->mode,
+            $this->type,
+            $this->name,
+            $this->label,
+            $this->discription,
+            $this->metaInfo,
+            $this->extraContent,
+            $this->tag, 
+            $this->value, 
+            $this->selected
+        );
 
         $this->options[] = $option;
 
