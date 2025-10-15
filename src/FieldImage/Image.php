@@ -36,7 +36,7 @@ class Image
      * @return string
      * @throws Throwable
      */
-    public function render(): string
+    public function toHtml(): string
     {
         return view('custom-field::imageTag', [
             'field' => $this,

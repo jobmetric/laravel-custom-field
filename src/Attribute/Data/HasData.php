@@ -61,7 +61,7 @@ trait HasData
     public function getThemeData(): string
     {
         return $this->getData()->map(function (Data $data) {
-            return $data->render($this->replacement);
+            return $data->toHtml($this->replacement);
         })->implode('');
     }
 }

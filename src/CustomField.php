@@ -117,7 +117,7 @@ class CustomField
      * @return string
      * @throws Throwable
      */
-    public function render(
+    public function toHtml(
         array|string|int|bool|null $value = 'undefined',
         array                      $replaces = [],
         bool                       $showInfo = true,
@@ -143,7 +143,7 @@ class CustomField
             $this->images
         );
 
-        return $fieldInstance->render($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
+        return $fieldInstance->toHtml($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
     }
 
     /**

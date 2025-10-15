@@ -65,7 +65,7 @@ trait HasOption
     public function getThemeOptions(): string
     {
         return $this->getOptions()->map(function (Option $option) {
-            return $option->render();
+            return $option->toHtml();
         })->implode('');
     }
 }

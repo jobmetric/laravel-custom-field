@@ -63,7 +63,7 @@ trait HasImage
     public function getThemeImages(): string
     {
         return $this->getImages()->map(function (Image $image) {
-            return $image->render();
+            return $image->toHtml();
         })->implode('');
     }
 }

@@ -46,7 +46,7 @@ class Data
      * @return string
      * @throws Throwable
      */
-    public function render(array $replacement = []): string
+    public function toHtml(array $replacement = []): string
     {
         // If name is set, replace parts of it based on the replacement array
         $value = null;

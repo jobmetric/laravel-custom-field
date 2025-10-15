@@ -22,7 +22,7 @@ interface FieldContract
      * @return string
      * @throws Throwable
      */
-    public function render(
+    public function toHtml(
         array|string|int|bool|null $value = null,
         array                      $replaces = [],
         bool                       $showInfo = true,

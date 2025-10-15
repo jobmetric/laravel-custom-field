@@ -32,14 +32,14 @@ class Option
 
     public function __construct(
         string $mode,
-        string $type, 
-        string $name, 
-        string $label, 
-        string $discription, 
-        string $metaInfo, 
-        string $extraContent, 
-        string $tag, 
-        string|int|bool $value, 
+        string $type,
+        string $name,
+        string $label,
+        string $discription,
+        string $metaInfo,
+        string $extraContent,
+        string $tag,
+        string|int|bool $value,
         bool $selected = false
         )
     {
@@ -61,9 +61,8 @@ class Option
      * @return string
      * @throws Throwable
      */
-    public function render(): string
+    public function toHtml(): string
     {
-      
         if($this->type === 'radio' || $this->type === 'checkbox') {
             $viewName = $this->mode === 'pro' ? 'optionSuperRadioAndCheckbox' : 'optionRadioAndCheckbox';
         }else{
