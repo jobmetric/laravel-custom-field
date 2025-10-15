@@ -58,4 +58,25 @@ class Data
 
         return ' data-' . Str::kebab($this->name) . '="' . $value . '"';
     }
+
+    /**
+     * Export data as array
+     *
+     * @param array $replacement
+     * @return array
+     */
+    public function toArray(array $replacement = []): array
+    {
+        $value = $this->value;
+        if ($value !== null) {
+            foreach ($replacement as $search => $replace) {
+                $value = str_replace('{' . $search . '}', $replace, (string) $value);
+            }
+        }
+
+        return [
+            'name' => $this->name,
+            'value' => $value,
+        ];
+    }
 }

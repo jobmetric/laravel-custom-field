@@ -44,6 +44,29 @@ class Image
     }
 
     /**
+     * Export image as array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        $dataItems = $this->getData()->map(function ($data) {
+            if (method_exists($data, 'toArray')) {
+                return $data->toArray();
+            }
+            return null;
+        })->filter()->values()->all();
+
+        return [
+            'src' => $this->src,
+            'alt' => $this->alt,
+            'width' => $this->width,
+            'height' => $this->height,
+            'data' => $dataItems,
+        ];
+    }
+
+    /**
      * get the property of the field
      *
      * @param string $name

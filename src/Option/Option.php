@@ -77,6 +77,35 @@ class Option
     }
 
     /**
+     * Export option as array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+        $dataItems = $this->getData()->map(function ($data) {
+            if (method_exists($data, 'toArray')) {
+                return $data->toArray();
+            }
+            return null;
+        })->filter()->values()->all();
+
+        return [
+            'mode' => $this->mode,
+            'type' => $this->type,
+            'name' => $this->name,
+            'label' => $this->label,
+            'description' => $this->discription,
+            'metaInfo' => $this->metaInfo,
+            'extraContent' => $this->extraContent,
+            'tag' => $this->tag,
+            'value' => $this->value,
+            'selected' => $this->selected,
+            'data' => $dataItems,
+        ];
+    }
+
+    /**
      * get the property of the field
      *
      * @param string $name

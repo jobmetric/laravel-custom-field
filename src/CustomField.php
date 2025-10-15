@@ -119,14 +119,14 @@ class CustomField
      */
     public function render(
         array|string|int|bool|null $value = 'undefined',
-        array $replaces = [],
-        bool $showInfo = true,
-        string $class = 'undefined',
-        string $classParent = null,
-        bool $hasErrorTagForm = false,
-        bool $hasErrorTagJs = false,
-        string|null $errorTagClass = null,
-        string|null $prefixId = 'undefined'
+        array                      $replaces = [],
+        bool                       $showInfo = true,
+        string                     $class = 'undefined',
+        string                     $classParent = null,
+        bool                       $hasErrorTagForm = false,
+        bool                       $hasErrorTagJs = false,
+        string|null                $errorTagClass = null,
+        string|null                $prefixId = 'undefined'
     ): string
     {
         $fieldInstance = FieldFactory::create($this->type);
@@ -144,5 +144,50 @@ class CustomField
         );
 
         return $fieldInstance->render($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
+    }
+
+    /**
+     * Export the field as structured array
+     *
+     * @param array|string|int|bool|null $value
+     * @param array $replaces
+     * @param bool $showInfo
+     * @param string $class
+     * @param string|null $classParent
+     * @param bool $hasErrorTagForm
+     * @param bool $hasErrorTagJs
+     * @param string|null $errorTagClass
+     * @param string|null $prefixId
+     *
+     * @return array
+     * @throws Throwable
+     */
+    public function toArray(
+        array|string|int|bool|null $value = 'undefined',
+        array                      $replaces = [],
+        bool                       $showInfo = true,
+        string                     $class = 'undefined',
+        string                     $classParent = null,
+        bool                       $hasErrorTagForm = false,
+        bool                       $hasErrorTagJs = false,
+        string|null                $errorTagClass = null,
+        string|null                $prefixId = 'undefined'
+    ): array
+    {
+        $fieldInstance = FieldFactory::create($this->type);
+
+        $fieldInstance->instantiate(
+            $this->label,
+            $this->info,
+            $this->validation,
+            $this->attributes,
+            $this->properties,
+            $this->data,
+            $this->params,
+            $this->options,
+            $this->images
+        );
+
+        return $fieldInstance->toArray($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
     }
 }

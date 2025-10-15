@@ -181,6 +181,89 @@ trait BaseField
     }
 
     /**
+     * export the field as structured array
+     *
+     * @param array|string|int|bool|null $value
+     * @param array $replaces
+     * @param bool $showInfo
+     * @param string $class
+     * @param string|null $classParent
+     * @param bool $hasErrorTagForm
+     * @param bool $hasErrorTagJs
+     * @param string|null $errorTagClass
+     * @param string|null $prefixId
+     *
+     * @return array
+     * @throws Throwable
+     */
+    public function toArray(
+        array|string|int|bool|null $value = 'undefined',
+        array                      $replaces = [],
+        bool                       $showInfo = true,
+        string                     $class = 'undefined',
+        string                     $classParent = null,
+        bool                       $hasErrorTagForm = true,
+        bool                       $hasErrorTagJs = true,
+        string|null                $errorTagClass = null,
+        string|null                $prefixId = 'undefined'
+    ): array
+    {
+        $this->replacement = $replaces;
+
+        if ($value != 'undefined') {
+            $this->value($value);
+        }
+
+        if ($class != 'undefined') {
+            $this->class($class);
+        }
+
+        if ($prefixId != 'undefined') {
+            $this->id($prefixId);
+        }
+
+        // normalize data entries
+        $dataItems = $this->getData()->map(function ($data) {
+            if (method_exists($data, 'toArray')) {
+                return $data->toArray($this->replacement);
+            }
+            return null;
+        })->filter()->values()->all();
+
+        // normalize options
+        $options = collect($this->options)->map(function ($option) {
+            if (method_exists($option, 'toArray')) {
+                return $option->toArray();
+            }
+            return null;
+        })->filter()->values()->all();
+
+        // normalize images
+        $images = collect($this->images)->map(function ($image) {
+            if (method_exists($image, 'toArray')) {
+                return $image->toArray();
+            }
+            return null;
+        })->filter()->values()->all();
+
+        return [
+            'type' => $this->type(),
+            'label' => $this->label,
+            'info' => $this->info,
+            'validation' => $this->validation,
+            'name' => $this->getName(),
+            'nameDot' => $this->getNameDot(),
+            'attributes' => $this->attributes,
+            'properties' => $this->properties,
+            'data' => $dataItems,
+            'params' => $this->params,
+            'options' => $options,
+            'images' => $images,
+            'value' => $this->value,
+        ];
+    }
+
+    /**
      * set the label of the field
      *
      * @param string $label
