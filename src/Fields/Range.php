@@ -9,7 +9,6 @@ use JobMetric\CustomField\Attribute\HasMin;
 use JobMetric\CustomField\Attribute\HasName;
 use JobMetric\CustomField\Attribute\HasValue;
 
-
 class Range implements FieldContract
 {
     use BaseField,
@@ -20,8 +19,6 @@ class Range implements FieldContract
         HasMax,
         HasId;
 
-
-
     /**
      * get the type of the field
      *
@@ -31,7 +28,8 @@ class Range implements FieldContract
     {
         return 'range';
     }
-    public function beForBuild(): void
+
+    public function beforeBuild(): void
     {
         $this->class("form-range");
     }

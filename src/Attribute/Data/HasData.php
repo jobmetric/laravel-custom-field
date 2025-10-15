@@ -4,7 +4,6 @@ namespace JobMetric\CustomField\Attribute\Data;
 
 use Closure;
 use Illuminate\Support\Collection;
-use JobMetric\CustomField\Option\Option;
 use Throwable;
 
 trait HasData

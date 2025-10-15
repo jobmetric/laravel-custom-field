@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Tel;
 
 trait BuilderTel
 {
     /**
      * Tel field
      *
-     * @return tel
+     * @return Tel
      */
-    public static function tel(): tel
+    public static function tel(): Tel
     {
         self::$fieldContract = new Tel;
 

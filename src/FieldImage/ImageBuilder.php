@@ -19,7 +19,7 @@ class ImageBuilder
     /**
      * Src of the image
      *
-     * @var string$src
+     * @var string $src
      */
     protected string $src = '';
 
@@ -75,6 +75,8 @@ class ImageBuilder
     /**
      * Set the image as width.
      *
+     * @param string|int $width
+     *
      * @return static
      */
     public function width(string|int $width): static
@@ -87,6 +89,8 @@ class ImageBuilder
 
     /**
      * Set the image as height.
+     *
+     * @param string|int $height
      *
      * @return static
      */
@@ -105,7 +109,7 @@ class ImageBuilder
      */
     public function build(): Image
     {
-        $image = new Image($this->src, $this->alt, $this->width , $this->height);
+        $image = new Image($this->src, $this->alt, $this->width, $this->height);
 
         $this->images[] = $image;
 

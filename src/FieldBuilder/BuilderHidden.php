@@ -1,6 +1,8 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Hidden;
 
 trait BuilderHidden
 {

@@ -22,12 +22,7 @@ class Image
     public string|int $width;
     public string|int $height;
 
-    public function __construct(
-        string $src,
-        string $alt,
-        string|int $width,
-        string|int $height
-    )
+    public function __construct(string $src, string $alt, string|int $width, string|int $height)
     {
         $this->src = $src;
         $this->alt = $alt;
@@ -52,7 +47,7 @@ class Image
      * get the property of the field
      *
      * @param string $name
-     * @param array  $arguments
+     * @param array $arguments
      *
      * @return mixed
      * @throws Throwable

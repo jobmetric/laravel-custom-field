@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Week;
 
 trait BuilderWeek
 {
     /**
      * Week field
      *
-     * @return week
+     * @return Week
      */
-    public static function week(): week
+    public static function week(): Week
     {
         self::$fieldContract = new Week;
 

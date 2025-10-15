@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Color;
 
 trait BuilderColor
 {
     /**
      * Color field
      *
-     * @return color
+     * @return Color
      */
-    public static function color(): color
+    public static function color(): Color
     {
         self::$fieldContract = new Color;
 

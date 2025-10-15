@@ -1,19 +1,21 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Range;
 
 trait BuilderRange
 {
     /**
      * Range field
      *
-     * @return range
+     * @return Range
      */
-    public static function range(): range
+    public static function range(): Range
     {
         self::$fieldContract = new Range;
 
         return self::$fieldContract;
     }
-    
+
 }

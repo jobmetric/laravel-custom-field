@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\DateTimeLocal;
 
 trait BuilderDateTimeLocal
 {
     /**
      * DateTimeLocal field
      *
-     * @return dateTimeLocal
+     * @return DateTimeLocal
      */
-    public static function dateTimeLocal(): dateTimeLocal
+    public static function dateTimeLocal(): DateTimeLocal
     {
         self::$fieldContract = new DateTimeLocal;
 

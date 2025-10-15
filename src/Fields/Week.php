@@ -7,7 +7,6 @@ use JobMetric\CustomField\Attribute\HasId;
 use JobMetric\CustomField\Attribute\HasName;
 use JobMetric\CustomField\Attribute\HasValue;
 
-
 class Week implements FieldContract
 {
     use BaseField,
@@ -15,8 +14,6 @@ class Week implements FieldContract
         HasValue,
         HasClass,
         HasId;
-
-
 
     /**
      * get the type of the field

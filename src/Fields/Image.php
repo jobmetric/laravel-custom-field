@@ -10,7 +10,6 @@ use JobMetric\CustomField\Attribute\HasName;
 use JobMetric\CustomField\Attribute\HasSrc;
 use JobMetric\CustomField\Attribute\HasWidth;
 
-
 class Image implements FieldContract
 {
     use BaseField,
@@ -21,8 +20,6 @@ class Image implements FieldContract
         HasHeight,
         HasClass,
         HasId;
-
-
 
     /**
      * get the type of the field

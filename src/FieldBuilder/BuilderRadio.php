@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Radio;
 
 trait BuilderRadio
 {
     /**
      * Radio field
      *
-     * @return radio
+     * @return Radio
      */
-    public static function radio(): radio
+    public static function radio(): Radio
     {
         self::$fieldContract = new Radio;
 

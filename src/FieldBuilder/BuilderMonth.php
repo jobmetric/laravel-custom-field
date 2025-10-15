@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Month;
 
 trait BuilderMonth
 {
     /**
      * Month field
      *
-     * @return month
+     * @return Month
      */
-    public static function month(): month
+    public static function month(): Month
     {
         self::$fieldContract = new Month;
 

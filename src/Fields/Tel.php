@@ -9,7 +9,6 @@ use JobMetric\CustomField\Attribute\HasPattern;
 use JobMetric\CustomField\Attribute\HasPlaceholder;
 use JobMetric\CustomField\Attribute\HasValue;
 
-
 class Tel implements FieldContract
 {
     use BaseField,
@@ -19,8 +18,6 @@ class Tel implements FieldContract
         HasPlaceholder,
         HasClass,
         HasId;
-
-
 
     /**
      * get the type of the field

@@ -8,7 +8,6 @@ use JobMetric\CustomField\Attribute\HasName;
 use JobMetric\CustomField\Attribute\HasValue;
 use JobMetric\CustomField\Attribute\HasWidth;
 
-
 class Color implements FieldContract
 {
     use BaseField,
@@ -17,8 +16,6 @@ class Color implements FieldContract
         HasValue,
         HasName,
         HasId;
-
-
 
     /**
      * get the type of the field

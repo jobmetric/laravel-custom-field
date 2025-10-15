@@ -4,7 +4,6 @@ namespace JobMetric\CustomField\FieldImage;
 
 use Closure;
 use Illuminate\Support\Collection;
-use JobMetric\CustomField\FieldImage\ImageBuilder;
 use Throwable;
 
 trait HasImage

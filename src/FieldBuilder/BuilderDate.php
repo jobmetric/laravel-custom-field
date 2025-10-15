@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Date;
 
 trait BuilderDate
 {
     /**
      * Date field
      *
-     * @return date
+     * @return Date
      */
-    public static function date(): date
+    public static function date(): Date
     {
         self::$fieldContract = new Date;
 

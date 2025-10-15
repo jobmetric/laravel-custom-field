@@ -1,15 +1,17 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\FieldBuilder;
+
+use JobMetric\CustomField\Fields\Time;
 
 trait BuilderTime
 {
     /**
      * Time field
      *
-     * @return time
+     * @return Time
      */
-    public static function time(): time
+    public static function time(): Time
     {
         self::$fieldContract = new Time;
 

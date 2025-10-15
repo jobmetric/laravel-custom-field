@@ -249,21 +249,20 @@ trait BaseField
      * Get the value of a specific attribute
      *
      * @param string|null $key
-     * @param mixed $default
-     * 
+     *
      * @return mixed
      * @throws Throwable
      */
-    public function getAttribute(string|null $key = null)
+    public function getAttribute(string|null $key = null): mixed
     {
-        if(is_null($key)) {
+        if (is_null($key)) {
             return $this->attributes;
         }
 
-        if(!array_key_exists($key,$this->attributes)){
+        if (!array_key_exists($key, $this->attributes)) {
             throw new BadMethodCallException("attributes '$key' does not exist");
         }
-        
+
         return $this->attributes[$key];
     }
 
@@ -309,8 +308,8 @@ trait BaseField
      */
     public function build(): CustomField
     {
-        $this->beForBuild();
-        
+        $this->beforeBuild();
+
         return new CustomField(
             $this->type(),
             $this->label,
@@ -325,8 +324,7 @@ trait BaseField
         );
     }
 
-    public function beForBuild():void
+    public function beforeBuild(): void
     {
-
     }
 }
