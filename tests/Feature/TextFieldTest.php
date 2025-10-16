@@ -1,12 +1,16 @@
 <?php
 
-namespace Feature;
+namespace JobMetric\CustomField\Tests\Feature;
 
 use JobMetric\CustomField\CustomFieldBuilder;
 use JobMetric\CustomField\Tests\TestCase;
+use Throwable;
 
 class TextFieldTest extends TestCase
 {
+    /**
+     * @throws Throwable
+     */
     public function test_text_field_to_array_and_html(): void
     {
         $field = CustomFieldBuilder::text()

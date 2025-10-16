@@ -1,12 +1,16 @@
 <?php
 
-namespace Feature;
+namespace JobMetric\CustomField\Tests\Feature;
 
 use JobMetric\CustomField\Attribute\Data\DataBuilder;
 use JobMetric\CustomField\Tests\TestCase;
+use Throwable;
 
 class DataBuilderTest extends TestCase
 {
+    /**
+     * @throws Throwable
+     */
     public function test_builds_data_and_renders_html_with_replacements(): void
     {
         $builder = new DataBuilder();

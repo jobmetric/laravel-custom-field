@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature;
+namespace JobMetric\CustomField\Tests\Feature;
 
 use Exception;
 use JobMetric\CustomField\FieldFactory;
@@ -24,6 +24,9 @@ use JobMetric\CustomField\Tests\TestCase;
 
 class FieldFactoryTest extends TestCase
 {
+    /**
+     * @throws Exception
+     */
     public function test_creates_correct_instances(): void
     {
         $cases = [

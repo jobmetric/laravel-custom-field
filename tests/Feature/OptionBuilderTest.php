@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature;
+namespace JobMetric\CustomField\Tests\Feature;
 
 use JobMetric\CustomField\Exceptions\OptionEmptyLabelException;
 use JobMetric\CustomField\Option\OptionBuilder;
@@ -8,6 +8,9 @@ use JobMetric\CustomField\Tests\TestCase;
 
 class OptionBuilderTest extends TestCase
 {
+    /**
+     * @throws OptionEmptyLabelException
+     */
     public function test_builds_option_successfully(): void
     {
         $builder = new OptionBuilder();
