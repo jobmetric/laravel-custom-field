@@ -2,16 +2,9 @@
 
 namespace JobMetric\CustomField\Fields;
 
-use JobMetric\CustomField\Attribute\HasId;
-use JobMetric\CustomField\Attribute\HasName;
-use JobMetric\CustomField\Attribute\HasValue;
-
 class DateTimeLocal implements FieldContract
 {
-    use BaseField,
-        HasName,
-        HasValue,
-        HasId;
+    use BaseField;
 
     /**
      * get the type of the field
