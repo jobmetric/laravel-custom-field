@@ -1,6 +1,7 @@
 @php
-$width = $field->getAttribute('width') ? "width: {$field->getAttribute('width')}px; " : '';
-$height = $field->getAttribute('height') ? "height: {$field->getAttribute('height')}px; " : '';
+$attrs = $field->getAttribute();
+$width = (array_key_exists('width', $attrs) && $attrs['width']) ? "width: {$attrs['width']}px; " : '';
+$height = (array_key_exists('height', $attrs) && $attrs['height']) ? "height: {$attrs['height']}px; " : '';
 @endphp
 <div class="{{ $classParent ?? 'mb-10' }}" style="{{ $width .$height }}">
     <label class="form-label d-flex justify-content-between align-items-center">
