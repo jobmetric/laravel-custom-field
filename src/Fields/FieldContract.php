@@ -24,11 +24,11 @@ interface FieldContract
         array                      $replaces = [],
         bool                       $showInfo = true,
         string                     $class = '',
-        string                     $classParent = null,
+        ?string                    $classParent = null,
         bool                       $hasErrorTagForm = true,
         bool                       $hasErrorTagJs = true,
-        string|null                $errorTagClass = null,
-        string|null                $prefixId = null
+        ?string                    $errorTagClass = null,
+        ?string                    $prefixId = null
     ): string;
 
     /**
@@ -51,10 +51,10 @@ interface FieldContract
         array                      $replaces = [],
         bool                       $showInfo = true,
         string                     $class = '',
-        string                     $classParent = null,
+        ?string                    $classParent = null,
         bool                       $hasErrorTagForm = true,
         bool                       $hasErrorTagJs = true,
-        string|null                $errorTagClass = null,
-        string|null                $prefixId = null
+        ?string                    $errorTagClass = null,
+        ?string                    $prefixId = null
     ): array;
 }

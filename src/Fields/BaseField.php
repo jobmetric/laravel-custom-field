@@ -150,11 +150,11 @@ trait BaseField
         array                      $replaces = [],
         bool                       $showInfo = true,
         string                     $class = 'undefined',
-        string                     $classParent = null,
+        ?string                    $classParent = null,
         bool                       $hasErrorTagForm = true,
         bool                       $hasErrorTagJs = true,
-        string|null                $errorTagClass = null,
-        string|null                $prefixId = 'undefined'
+        ?string                    $errorTagClass = null,
+        ?string                    $prefixId = 'undefined'
     ): string
     {
         $this->replacement = $replaces;
@@ -201,11 +201,11 @@ trait BaseField
         array                      $replaces = [],
         bool                       $showInfo = true,
         string                     $class = 'undefined',
-        string                     $classParent = null,
+        ?string                    $classParent = null,
         bool                       $hasErrorTagForm = true,
         bool                       $hasErrorTagJs = true,
-        string|null                $errorTagClass = null,
-        string|null                $prefixId = 'undefined'
+        ?string                    $errorTagClass = null,
+        ?string                    $prefixId = 'undefined'
     ): array
     {
         $this->replacement = $replaces;

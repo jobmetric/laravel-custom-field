@@ -39,14 +39,14 @@ class CustomField
      *
      * @var string $label
      */
-    public string $label;
+    public ?string $label;
 
     /**
      * Field info
      *
      * @var string $info
      */
-    public string $info;
+    public ?string $info;
 
     /**
      * Field validation
@@ -122,11 +122,11 @@ class CustomField
         array                      $replaces = [],
         bool                       $showInfo = true,
         string                     $class = 'undefined',
-        string                     $classParent = null,
+        ?string                    $classParent = null,
         bool                       $hasErrorTagForm = false,
         bool                       $hasErrorTagJs = false,
-        string|null                $errorTagClass = null,
-        string|null                $prefixId = 'undefined'
+        ?string                    $errorTagClass = null,
+        ?string                    $prefixId = 'undefined'
     ): string
     {
         $fieldInstance = FieldFactory::create($this->type);
@@ -167,11 +167,11 @@ class CustomField
         array                      $replaces = [],
         bool                       $showInfo = true,
         string                     $class = 'undefined',
-        string                     $classParent = null,
+        ?string                    $classParent = null,
         bool                       $hasErrorTagForm = false,
         bool                       $hasErrorTagJs = false,
-        string|null                $errorTagClass = null,
-        string|null                $prefixId = 'undefined'
+        ?string                    $errorTagClass = null,
+        ?string                    $prefixId = 'undefined'
     ): array
     {
         $fieldInstance = FieldFactory::create($this->type);

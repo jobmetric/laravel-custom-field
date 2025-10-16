@@ -46,10 +46,10 @@ class Data
     public function toHtml(array $replacement = []): string
     {
         // If name is set, replace parts of it based on the replacement array
-        $value = null;
+        $value = $this->value;
         if ($this->value !== null) {
             foreach ($replacement as $search => $replace) {
-                $value = str_replace('{' . $search . '}', $replace, $this->value);
+                $value = str_replace('{' . $search . '}', $replace, (string) $value);
             }
         }
 
