@@ -28,7 +28,21 @@ trait HasOption
         if ($callable instanceof Closure) {
             $callable($builder = new OptionBuilder);
 
-            $this->options[] = $builder->build();
+            // Finalize to ensure any pending option is built
+            if (method_exists($builder, 'finalize')) {
+                $builder->finalize();
+            } else {
+                // Fallback for safety in case finalize is missing
+                try {
+                    $builder->build();
+                } catch (Throwable) {
+                    // ignore if build cannot proceed (e.g., empty label)
+                }
+            }
+
+            foreach ($builder->get() as $option) {
+                $this->options[] = $option;
+            }
         } else {
             foreach ($callable as $option) {
                 $builder = new OptionBuilder;

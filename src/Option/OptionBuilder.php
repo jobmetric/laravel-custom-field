@@ -15,7 +15,7 @@ class OptionBuilder
      *
      * @var array<Option> $options
      */
-    protected array $options;
+    protected array $options = [];
 
     /**
      * Mode of the option (e.g., normal/pro).
@@ -96,6 +96,9 @@ class OptionBuilder
      */
     public function mode(string $mode): static
     {
+        if ($this->label !== '') {
+            $this->build();
+        }
         $this->mode = $mode;
 
         return $this;
@@ -110,6 +113,9 @@ class OptionBuilder
      */
     public function type(string $type): static
     {
+        if ($this->label !== '') {
+            $this->build();
+        }
         $this->type = $type;
 
         return $this;
@@ -125,6 +131,9 @@ class OptionBuilder
      */
     public function name(string $name): static
     {
+        if ($this->label !== '') {
+            $this->build();
+        }
         $this->name = $name;
 
         return $this;
@@ -252,6 +261,9 @@ class OptionBuilder
 
         $this->options[] = $option;
 
+        // Reset current builder state so subsequent builds don't inherit flags
+        $this->resetCurrentState();
+
         return $option;
     }
 
@@ -263,5 +275,34 @@ class OptionBuilder
     public function get(): array
     {
         return $this->options;
+    }
+
+    /**
+     * Reset the current in-progress option state to defaults.
+     *
+     * @return void
+     */
+    protected function resetCurrentState(): void
+    {
+        $this->mode = 'normal';
+        $this->type = 'selectBox';
+        $this->name = '';
+        $this->label = '';
+        $this->discription = '';
+        $this->metaInfo = '';
+        $this->extraContent = '';
+        $this->tag = '';
+        $this->value = '';
+        $this->selected = false;
+    }
+
+    /**
+     * Finalize builder by building any pending option definition.
+     */
+    public function finalize(): void
+    {
+        if ($this->label !== '') {
+            $this->build();
+        }
     }
 }
