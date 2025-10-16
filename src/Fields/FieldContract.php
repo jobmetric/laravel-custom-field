@@ -2,12 +2,10 @@
 
 namespace JobMetric\CustomField\Fields;
 
-use Throwable;
-
 interface FieldContract
 {
     /**
-     * render the field as HTML
+     * Render HTML.
      *
      * @param array|string|int|bool|null $value
      * @param array $replaces
@@ -20,7 +18,6 @@ interface FieldContract
      * @param string|null $prefixId
      *
      * @return string
-     * @throws Throwable
      */
     public function toHtml(
         array|string|int|bool|null $value = null,
@@ -35,7 +32,7 @@ interface FieldContract
     ): string;
 
     /**
-     * export the field as structured array
+     * Export as array.
      *
      * @param array|string|int|bool|null $value
      * @param array $replaces
@@ -48,7 +45,6 @@ interface FieldContract
      * @param string|null $prefixId
      *
      * @return array
-     * @throws Throwable
      */
     public function toArray(
         array|string|int|bool|null $value = null,

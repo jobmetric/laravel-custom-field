@@ -3,44 +3,43 @@
 namespace JobMetric\CustomField\FieldImage;
 
 use Illuminate\Support\Traits\Macroable;
-use Throwable;
 
 class ImageBuilder
 {
     use Macroable;
 
     /**
-     * The Image instances
+     * Built Image instances.
      *
-     * @var array $image
+     * @var array<Image> $images
      */
     protected array $images;
 
     /**
-     * Src of the image
+     * Source URL of the image.
      *
-     * @var string $src
+     * @var string
      */
     protected string $src = '';
 
     /**
-     * Alt of the image
+     * Alt text of the image.
      *
-     * @var string $alt
+     * @var string
      */
     protected string $alt = '';
 
     /**
-     * Width status of the image
+     * Width of the image.
      *
-     * @var string|int $width
+     * @var string|int
      */
     protected string|int $width = '';
 
     /**
-     * Height status of the image
+     * Height of the image.
      *
-     * @var string|int $height
+     * @var string|int
      */
     protected string|int $height = '';
 
@@ -105,7 +104,6 @@ class ImageBuilder
      * Build the image.
      *
      * @return Image
-     * @throws Throwable
      */
     public function build(): Image
     {

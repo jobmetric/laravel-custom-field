@@ -56,10 +56,9 @@ class Option
     }
 
     /**
-     * Render the option as HTML.
+     * Render HTML.
      *
      * @return string
-     * @throws Throwable
      */
     public function toHtml(): string
     {
@@ -76,7 +75,7 @@ class Option
     }
 
     /**
-     * Export option as array
+     * Export as array.
      *
      * @return array
      */
@@ -111,7 +110,6 @@ class Option
      * @param array  $arguments
      *
      * @return mixed
-     * @throws Throwable
      */
     public function __call(string $name, array $arguments): mixed
     {
@@ -128,7 +126,6 @@ class Option
      * @param string $property
      *
      * @return mixed
-     * @throws Throwable
      */
     public function get(string $property): mixed
     {

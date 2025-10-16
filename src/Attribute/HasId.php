@@ -8,17 +8,16 @@ namespace JobMetric\CustomField\Attribute;
 trait HasId
 {
     /**
-     * The id attribute for the field
+     * Field id.
      *
-     * @var string|null $id
+     * @var string|null
      */
     protected string|null $id = null;
 
     /**
-     * Set the id attribute for the field
+     * Set id.
      *
      * @param string|null $id
-     *
      * @return static
      */
     public function id(string|null $id): static

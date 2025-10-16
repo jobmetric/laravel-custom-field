@@ -54,7 +54,7 @@ trait HasData
     }
 
     /**
-     * Get the data render template
+     * Get data HTML.
      *
      * @return string
      */

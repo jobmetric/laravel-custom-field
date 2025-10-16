@@ -4,86 +4,86 @@ namespace JobMetric\CustomField\Option;
 
 use Illuminate\Support\Traits\Macroable;
 use JobMetric\CustomField\Exceptions\OptionEmptyLabelException;
-use Throwable;
+ 
 
 class OptionBuilder
 {
     use Macroable;
 
     /**
-     * The Option instances
+     * Built Option instances.
      *
-     * @var array $option
+     * @var array<Option> $options
      */
     protected array $options;
 
     /**
-     * mode of the option
+     * Mode of the option (e.g., normal/pro).
      *
-     * @var string $mode
+     * @var string
      */
     protected string $mode = 'normal';
 
     /**
-     * type of the option
+     * Type of the option (selectBox/radio/checkbox).
      *
-     * @var string $type
+     * @var string
      */
     protected string $type = 'selectBox';
 
     /**
-     * name of the option
+     * Name of the option input.
      *
-     * @var string $name
+     * @var string
      */
     protected string $name = '';
 
     /**
-     * Label of the option
+     * Label of the option.
      *
-     * @var string $label
+     * @var string
      */
     protected string $label = '';
 
     /**
-     * discription of the option
+     * Description of the option.
      *
-     * @var string $discription
+     * @var string
      */
     protected string $discription = '';
 
     /**
-     * metaInfo of the option
+     * Meta information for the option.
      *
-     * @var string $metaInfo
+     * @var string
      */
     protected string $metaInfo = '';
 
     /**
-     * extraContent of the option
+     * Extra content associated with the option.
      *
-     * @var string $extraContent
+     * @var string
      */
     protected string $extraContent = '';
 
     /**
-     * tag of the option
+     * Tag of the option.
      *
-     * @var string $tag
+     * @var string
      */
     protected string $tag = '';
 
     /**
-     * Value of the option
+     * Value of the option.
      *
-     * @var string|int|bool $value
+     * @var string|int|bool
      */
     protected string|int|bool $value = '';
 
     /**
-     * Selected status of the option
+     * Selected status of the option.
      *
-     * @var bool $selected
+     * @var bool
      */
     protected bool $selected = false;
 
@@ -230,7 +230,6 @@ class OptionBuilder
      * Build the option.
      *
      * @return Option
-     * @throws Throwable
      */
     public function build(): Option
     {

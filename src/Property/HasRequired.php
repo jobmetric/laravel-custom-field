@@ -9,7 +9,7 @@ namespace JobMetric\CustomField\Property;
 trait HasRequired
 {
     /**
-     * Set the required property for the field
+     * Set required.
      *
      * @return static
      */
@@ -23,7 +23,7 @@ trait HasRequired
     }
 
     /**
-     * Has required property for the field
+     * Check required.
      *
      * @return bool
      */

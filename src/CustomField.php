@@ -102,9 +102,9 @@ class CustomField
     }
 
     /**
-     * Render the field as HTML
+     * Render HTML.
      *
-     * @param array|string|int|bool|null $value
+     * @param mixed $value
      * @param array $replaces
      * @param bool $showInfo
      * @param string $class
@@ -147,9 +147,9 @@ class CustomField
     }
 
     /**
-     * Export the field as structured array
+     * Export as array.
      *
-     * @param array|string|int|bool|null $value
+     * @param mixed $value
      * @param array $replaces
      * @param bool $showInfo
      * @param string $class

@@ -4,14 +4,13 @@ namespace JobMetric\CustomField\FieldImage;
 
 use Closure;
 use Illuminate\Support\Collection;
-use Throwable;
 
 trait HasImage
 {
     /**
-     * The image for the field
+     * Images.
      *
-     * @var array $images
+     * @var array
      */
     protected array $images = [];
 
@@ -21,7 +20,6 @@ trait HasImage
      * @param Closure|array $callable
      *
      * @return static
-     * @throws Throwable
      */
     public function images(Closure|array $callable): static
     {
@@ -52,11 +50,11 @@ trait HasImage
      */
     public function getImages(): Collection
     {
-        return collect($this->image);
+        return collect($this->images);
     }
 
     /**
-     * Get the images render template
+     * Get images HTML.
      *
      * @return string
      */

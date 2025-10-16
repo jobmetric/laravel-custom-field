@@ -128,8 +128,9 @@ trait BaseField
         $this->images = $images;
     }
 
+
     /**
-     * render the field as HTML
+     * Render HTML.
      *
      * @param array|string|int|bool|null $value
      * @param array $replaces
@@ -181,7 +182,7 @@ trait BaseField
     }
 
     /**
-     * export the field as structured array
+     * Export as array.
      *
      * @param array|string|int|bool|null $value
      * @param array $replaces
@@ -194,7 +195,6 @@ trait BaseField
      * @param string|null $prefixId
      *
      * @return array
-     * @throws Throwable
      */
     public function toArray(
         array|string|int|bool|null $value = 'undefined',
@@ -334,7 +334,6 @@ trait BaseField
      * @param string|null $key
      *
      * @return mixed
-     * @throws Throwable
      */
     public function getAttribute(string|null $key = null): mixed
     {
@@ -356,7 +355,6 @@ trait BaseField
      * @param array $arguments
      *
      * @return mixed
-     * @throws Throwable
      */
     public function __call(string $name, array $arguments): mixed
     {
@@ -373,7 +371,6 @@ trait BaseField
      * @param string $property
      *
      * @return mixed
-     * @throws Throwable
      */
     public function get(string $property): mixed
     {

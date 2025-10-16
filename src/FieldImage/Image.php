@@ -31,7 +31,7 @@ class Image
     }
 
     /**
-     * Render the image as HTML.
+     * Render HTML.
      *
      * @return string
      * @throws Throwable
@@ -44,7 +44,7 @@ class Image
     }
 
     /**
-     * Export image as array
+     * Export as array.
      *
      * @return array
      */
@@ -73,7 +73,6 @@ class Image
      * @param array $arguments
      *
      * @return mixed
-     * @throws Throwable
      */
     public function __call(string $name, array $arguments): mixed
     {
@@ -90,7 +89,6 @@ class Image
      * @param string $property
      *
      * @return mixed
-     * @throws Throwable
      */
     public function get(string $property): mixed
     {

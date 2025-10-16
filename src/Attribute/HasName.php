@@ -11,20 +11,18 @@ use Throwable;
 trait HasName
 {
     /**
-     * The replacement for the name attribute
+     * Name replacements.
      *
-     * @var array $replacement
+     * @var array<string,string>
      */
     protected array $replacement = [];
 
     /**
-     * Set the name attribute for the field
+     * Set name.
      *
      * @param string|null $name
      * @param string|null $uniqName
-     *
      * @return static
-     * @throws Throwable
      */
     public function name(string|null $name, string|null $uniqName = null): static
     {
@@ -39,7 +37,7 @@ trait HasName
     }
 
     /**
-     * Get the name attribute for the field
+     * Get name.
      *
      * @return string|null
      */
@@ -59,7 +57,7 @@ trait HasName
     }
 
     /**
-     * Get the name dot attribute for the field
+     * Get dot name.
      *
      * @return string|null
      */

@@ -58,7 +58,7 @@ trait HasOption
     }
 
     /**
-     * Get the options render template
+     * Get options HTML.
      *
      * @return string
      */

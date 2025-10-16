@@ -3,7 +3,6 @@
 namespace JobMetric\CustomField\Attribute\Data;
 
 use Illuminate\Support\Str;
-use Throwable;
 
 /**
  * Class Data
@@ -39,12 +38,10 @@ class Data
     }
 
     /**
-     * Render the data as HTML.
+     * Render HTML attribute.
      *
      * @param array $replacement
-     *
      * @return string
-     * @throws Throwable
      */
     public function toHtml(array $replacement = []): string
     {
@@ -60,7 +57,7 @@ class Data
     }
 
     /**
-     * Export data as array
+     * Export as array.
      *
      * @param array $replacement
      * @return array
@@ -70,7 +67,7 @@ class Data
         $value = $this->value;
         if ($value !== null) {
             foreach ($replacement as $search => $replace) {
-                $value = str_replace('{' . $search . '}', $replace, (string) $value);
+                $value = str_replace('{' . $search . '}', $replace, (string)$value);
             }
         }
 
