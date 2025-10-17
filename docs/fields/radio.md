@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Radio Field
 
 Builder: `CustomFieldBuilder::radio()`
@@ -22,3 +24,19 @@ $radio = CustomFieldBuilder::radio()
 
 echo $radio->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $radio->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $radio->toArray();
+```
+
+---
+
+Next To: [Hidden Field](hidden.md)

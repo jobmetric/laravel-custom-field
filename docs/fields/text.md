@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Text Field
 
 Builder: `CustomFieldBuilder::text()`
@@ -22,3 +24,19 @@ $text = CustomFieldBuilder::text()
 
 echo $text->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $text->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $text->toArray();
+```
+
+---
+
+Next To: [Number Field](number.md)

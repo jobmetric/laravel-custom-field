@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Week Field
 
 Builder: `CustomFieldBuilder::week()`
@@ -10,3 +12,19 @@ $week = CustomFieldBuilder::week()
 
 echo $week->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $week->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $week->toArray();
+```
+
+---
+
+Next To: [Month Field](month.md)

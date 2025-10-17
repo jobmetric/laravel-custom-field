@@ -16,3 +16,7 @@ $image = CustomFieldBuilder::image()
 
 echo $image->toHtml();
 ```
+
+---
+
+Next To: [Text Field](../fields/text.md)

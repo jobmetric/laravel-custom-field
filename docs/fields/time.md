@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Time Field
 
 Builder: `CustomFieldBuilder::time()`
@@ -12,3 +14,19 @@ $time = CustomFieldBuilder::time()
 
 echo $time->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $time->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $time->toArray();
+```
+
+---
+
+Next To: [Week Field](week.md)

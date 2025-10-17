@@ -20,3 +20,7 @@ $field = CustomFieldBuilder::text()
     ->value('foo@example.com')
     ->build();
 ```
+
+---
+
+Next To: [Properties](properties.md)

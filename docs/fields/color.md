@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Color Field
 
 Builder: `CustomFieldBuilder::color()`
@@ -12,3 +14,19 @@ $color = CustomFieldBuilder::color()
 
 echo $color->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $color->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $color->toArray();
+```
+
+---
+
+Next To: [Password Field](password.md)

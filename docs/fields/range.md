@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Range Field
 
 Builder: `CustomFieldBuilder::range()`
@@ -14,3 +16,19 @@ $range = CustomFieldBuilder::range()
 
 echo $range->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $range->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $range->toArray();
+```
+
+---
+
+Next To: [Tel Field](tel.md)

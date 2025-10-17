@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Date Field
 
 Builder: `CustomFieldBuilder::date()`
@@ -13,3 +15,19 @@ $date = CustomFieldBuilder::date()
 
 echo $date->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $date->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $date->toArray();
+```
+
+---
+
+Next To: [DateTimeLocal Field](datetime-local.md)

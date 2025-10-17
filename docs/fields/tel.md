@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Tel Field
 
 Builder: `CustomFieldBuilder::tel()`
@@ -10,3 +12,19 @@ $tel = CustomFieldBuilder::tel()
 
 echo $tel->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $tel->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $tel->toArray();
+```
+
+---
+
+Next To: [Image Field](image.md)

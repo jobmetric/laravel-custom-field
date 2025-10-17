@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Select Field
 
 Builder: `CustomFieldBuilder::select()`
@@ -38,6 +40,20 @@ $select = CustomFieldBuilder::select()
     ->build();
 ```
 
+## Rendering
+
+```php
+$html = $select->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $select->toArray();
+```
+
+---
+
 Multiple select:
 ```php
 CustomFieldBuilder::select()
@@ -50,3 +66,5 @@ CustomFieldBuilder::select()
     })
     ->build();
 ```
+
+Next To: [Radio Field](radio.md)

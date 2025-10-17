@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Image Field
 
 Builder: `CustomFieldBuilder::image()`
@@ -13,3 +15,19 @@ $image = CustomFieldBuilder::image()
 
 echo $image->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $image->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $image->toArray();
+```
+
+---
+
+Back to: [Docs Index](../../README.md)

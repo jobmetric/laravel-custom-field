@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # DateTimeLocal Field
 
 Builder: `CustomFieldBuilder::dateTimeLocal()`
@@ -10,3 +12,19 @@ $dt = CustomFieldBuilder::dateTimeLocal()
 
 echo $dt->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $dt->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $dt->toArray();
+```
+
+---
+
+Next To: [Time Field](time.md)

@@ -15,3 +15,7 @@ $field = CustomFieldBuilder::text()
 // When rendering with toHtml/toArray, placeholders in values are replaced
 $html = $field->toHtml(replaces: ['id' => '42']);
 ```
+
+---
+
+Next To: [Options](options.md)

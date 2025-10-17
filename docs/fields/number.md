@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Number Field
 
 Builder: `CustomFieldBuilder::number()`
@@ -13,3 +15,19 @@ $number = CustomFieldBuilder::number()
 
 echo $number->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $number->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $number->toArray();
+```
+
+---
+
+Next To: [Select Field](select.md)

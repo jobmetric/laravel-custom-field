@@ -1,3 +1,5 @@
+[Back To README.md](../../README.md)
+
 # Hidden Field
 
 Builder: `CustomFieldBuilder::hidden()`
@@ -10,3 +12,19 @@ $hidden = CustomFieldBuilder::hidden()
 
 echo $hidden->toHtml();
 ```
+
+## Rendering
+
+```php
+$html = $hidden->toHtml();
+```
+
+## Array Output
+
+```php
+$payload = $hidden->toArray();
+```
+
+---
+
+Next To: [Date Field](date.md)
