@@ -20,7 +20,4 @@ return [
         'option_empty_label' => 'برچسب گزینه نمی تواند خالی باشد.',
     ],
 
-    'messages' => [
-    ],
-
 ];

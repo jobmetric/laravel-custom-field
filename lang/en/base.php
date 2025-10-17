@@ -20,7 +20,4 @@ return [
         'option_empty_label' => 'Option label cannot be empty.',
     ],
 
-    'messages' => [
-    ],
-
 ];

@@ -34,7 +34,7 @@ class AttributesPropertiesTest extends TestCase
         $customField = $field->build();
         $html = $customField->toHtml(class: 'extra');
 
-        $this->assertStringContainsString('placeholder="Validation errors occurred."', $html);
+        $this->assertStringContainsString('placeholder="' . trans('custom-field::base.validation.errors') .  '"', $html);
         $this->assertStringContainsString('class="form-control extra"', $html);
     }
 }
