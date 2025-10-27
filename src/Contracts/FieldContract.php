@@ -1,9 +1,16 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\Contracts;
 
 interface FieldContract
 {
+    /**
+     * Get the alias of the field.
+     *
+     * @return string
+     */
+    public static function alias(): string;
+
     /**
      * Render HTML.
      *
