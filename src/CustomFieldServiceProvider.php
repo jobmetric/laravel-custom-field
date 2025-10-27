@@ -2,9 +2,19 @@
 
 namespace JobMetric\CustomField;
 
-use JobMetric\PackageCore\Exceptions\ViewFolderNotFoundException;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
+use JobMetric\CustomField\Contracts\FieldContract;
+use JobMetric\CustomField\Exceptions\BladeNamespaceRegistrationException;
+use JobMetric\CustomField\Exceptions\BladeViewNotFoundException;
+use JobMetric\CustomField\Support\CustomFieldRegistry;
+use JobMetric\PackageCore\Enums\RegisterClassTypeEnum;
+use JobMetric\PackageCore\Exceptions\RegisterClassTypeNotFoundException;
 use JobMetric\PackageCore\PackageCore;
 use JobMetric\PackageCore\PackageCoreServiceProvider;
+use ReflectionException;
 
 class CustomFieldServiceProvider extends PackageCoreServiceProvider
 {
@@ -12,12 +22,95 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
      * @param PackageCore $package
      *
      * @return void
-     * @throws ViewFolderNotFoundException
+     * @throws RegisterClassTypeNotFoundException
      */
     public function configuration(PackageCore $package): void
     {
-        $package->name('laravel-custom-field')
+        $package
+            ->name('laravel-custom-field')
             ->hasTranslation()
-            ->hasView();
+            ->registerClass('CustomFieldRegistry', CustomFieldRegistry::class, RegisterClassTypeEnum::SINGLETON());
+    }
+
+    /**
+     * after register package
+     *
+     * @return void
+     * @throws BindingResolutionException
+     */
+    public function afterRegisterPackage(): void
+    {
+        $this->app
+            ->make('CustomFieldRegistry')->register(new \JobMetric\CustomField\CustomFields\Text\Text);
+    }
+
+    /**
+     * after boot package
+     *
+     * @return void
+     * @throws BindingResolutionException
+     * @throws ReflectionException
+     * @throws BladeNamespaceRegistrationException
+     * @throws BladeViewNotFoundException
+     */
+    public function afterBootPackage(): void
+    {
+        /** @var CustomFieldRegistry $registry */
+        $registry = $this->app->make('CustomFieldRegistry');
+
+        foreach ($registry->all() as $customField) {
+            $fqcn = get_class($customField);
+            $dirPath = class_directory_path($fqcn);
+
+            if (! $dirPath) {
+                // If class path cannot be resolved, skip silently or throw a dedicated exception if you prefer.
+                continue;
+            }
+
+            $entryBlade = $dirPath . DIRECTORY_SEPARATOR . 'view.blade.php';
+            if (! file_exists($entryBlade)) {
+                throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $entryBlade);
+            }
+
+            if (! $customField instanceof FieldContract) {
+                // Contract violation; you may throw here too if you want strictness.
+                continue;
+            }
+
+            $alias = $customField::alias();
+            $ns = 'custom-field-' . Str::kebab($alias);
+
+            View::addNamespace($ns, $dirPath);
+
+            // Optional components directory
+            $componentsPath = $dirPath . DIRECTORY_SEPARATOR . 'components';
+            if (is_dir($componentsPath)) {
+                Blade::anonymousComponentPath($componentsPath, $ns);
+            }
+
+            // Validate namespace hint registration
+            if (! array_key_exists($ns, View::getFinder()->getHints())) {
+                throw new BladeNamespaceRegistrationException($ns, $dirPath);
+            }
+
+            // Validate entry view resolution
+            if (! View::exists("{$ns}::view")) {
+                throw new BladeViewNotFoundException("{$ns}::view", $entryBlade);
+            }
+
+            // Publish assets if present
+            $assetsPath = $dirPath . DIRECTORY_SEPARATOR . 'assets';
+            if (is_dir($assetsPath)) {
+                $target = public_path('assets/vendor/custom-field/' . Str::kebab($alias));
+
+                // Map directory-to-directory; Laravel will copy recursively.
+                $this->publishes([$assetsPath => $target], [
+                    'custom-field-assets',
+                    'custom-field-assets:' . $alias,
+                ]);
+            }
+
+            $customField->boot($customField);
+        }
     }
 }
