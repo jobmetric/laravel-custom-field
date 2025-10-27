@@ -2,6 +2,8 @@
 
 namespace JobMetric\CustomField\Fields;
 
+use JobMetric\CustomField\Contracts\FieldContract;
+
 class Hidden implements FieldContract
 {
     use BaseField;

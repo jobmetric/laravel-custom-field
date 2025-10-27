@@ -4,6 +4,7 @@ namespace JobMetric\CustomField\Fields;
 
 use JobMetric\CustomField\Attribute\HasHeight;
 use JobMetric\CustomField\Attribute\HasWidth;
+use JobMetric\CustomField\Contracts\FieldContract;
 
 class Color implements FieldContract
 {

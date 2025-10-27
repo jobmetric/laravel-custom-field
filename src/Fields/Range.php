@@ -4,6 +4,7 @@ namespace JobMetric\CustomField\Fields;
 
 use JobMetric\CustomField\Attribute\HasMax;
 use JobMetric\CustomField\Attribute\HasMin;
+use JobMetric\CustomField\Contracts\FieldContract;
 
 class Range implements FieldContract
 {

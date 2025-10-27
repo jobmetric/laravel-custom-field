@@ -3,11 +3,11 @@
 namespace JobMetric\CustomField;
 
 use Exception;
+use JobMetric\CustomField\Contracts\FieldContract;
 use JobMetric\CustomField\Fields\Color;
 use JobMetric\CustomField\Fields\Date;
 use JobMetric\CustomField\Fields\DateTimeLocal;
 use JobMetric\CustomField\Fields\Email;
-use JobMetric\CustomField\Fields\FieldContract;
 use JobMetric\CustomField\Fields\Hidden;
 use JobMetric\CustomField\Fields\Image;
 use JobMetric\CustomField\Fields\Month;

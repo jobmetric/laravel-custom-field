@@ -2,6 +2,7 @@
 
 namespace JobMetric\CustomField\Fields;
 
+use JobMetric\CustomField\Contracts\FieldContract;
 use JobMetric\CustomField\Option\HasOption;
 use JobMetric\CustomField\Property\HasMultiple;
 

@@ -3,6 +3,7 @@
 namespace JobMetric\CustomField\Fields;
 
 use JobMetric\CustomField\Attribute\HasPlaceholder;
+use JobMetric\CustomField\Contracts\FieldContract;
 use JobMetric\CustomField\Option\HasOption;
 use JobMetric\CustomField\Property\HasMultiple;
 

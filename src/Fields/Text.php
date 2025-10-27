@@ -3,6 +3,7 @@
 namespace JobMetric\CustomField\Fields;
 
 use JobMetric\CustomField\Attribute\HasPlaceholder;
+use JobMetric\CustomField\Contracts\FieldContract;
 
 class Text implements FieldContract
 {

@@ -2,6 +2,8 @@
 
 namespace JobMetric\CustomField\Fields;
 
+use JobMetric\CustomField\Contracts\FieldContract;
+
 class Date implements FieldContract
 {
     use BaseField;
