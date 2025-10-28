@@ -3,7 +3,6 @@
 namespace JobMetric\CustomField;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use JobMetric\CustomField\Contracts\FieldContract;
@@ -28,6 +27,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
     {
         $package
             ->name('laravel-custom-field')
+            ->hasConfig()
             ->hasTranslation()
             ->registerClass('CustomFieldRegistry', CustomFieldRegistry::class, RegisterClassTypeEnum::SINGLETON());
     }
@@ -40,8 +40,9 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
      */
     public function afterRegisterPackage(): void
     {
-        $this->app
-            ->make('CustomFieldRegistry')->register(new \JobMetric\CustomField\CustomFields\Text\Text);
+        $registry = $this->app->make('CustomFieldRegistry');
+
+        $registry->register(new \JobMetric\CustomField\CustomFields\Text\Text);
     }
 
     /**
@@ -67,9 +68,16 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
                 continue;
             }
 
-            $entryBlade = $dirPath . DIRECTORY_SEPARATOR . 'view.blade.php';
-            if (! file_exists($entryBlade)) {
-                throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $entryBlade);
+            // Expect a "views" directory containing "default.blade.php".
+            $viewsPath = $dirPath . DIRECTORY_SEPARATOR . 'views';
+            $defaultTemplate = $viewsPath . DIRECTORY_SEPARATOR . 'default.blade.php';
+
+            if (! is_dir($viewsPath)) {
+                throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $viewsPath . ' (directory missing)');
+            }
+
+            if (! file_exists($defaultTemplate)) {
+                throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $defaultTemplate);
             }
 
             if (! $customField instanceof FieldContract) {
@@ -80,22 +88,16 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
             $alias = $customField::alias();
             $ns = 'custom-field-' . Str::kebab($alias);
 
-            View::addNamespace($ns, $dirPath);
-
-            // Optional components directory
-            $componentsPath = $dirPath . DIRECTORY_SEPARATOR . 'components';
-            if (is_dir($componentsPath)) {
-                Blade::anonymousComponentPath($componentsPath, $ns);
-            }
+            View::addNamespace($ns, $viewsPath);
 
             // Validate namespace hint registration
             if (! array_key_exists($ns, View::getFinder()->getHints())) {
-                throw new BladeNamespaceRegistrationException($ns, $dirPath);
+                throw new BladeNamespaceRegistrationException($ns, $viewsPath);
             }
 
             // Validate entry view resolution
             if (! View::exists("{$ns}::view")) {
-                throw new BladeViewNotFoundException("{$ns}::view", $entryBlade);
+                throw new BladeViewNotFoundException("{$ns}::view", $defaultTemplate);
             }
 
             // Publish assets if present
