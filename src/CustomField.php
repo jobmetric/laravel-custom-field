@@ -37,14 +37,14 @@ class CustomField
     /**
      * Field label
      *
-     * @var string $label
+     * @var string|null $label
      */
     public ?string $label;
 
     /**
      * Field info
      *
-     * @var string $info
+     * @var string|null $info
      */
     public ?string $info;
 
