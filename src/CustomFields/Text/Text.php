@@ -29,11 +29,11 @@ class Text extends BaseCustomField implements FieldContract
     ];
 
     /**
-     * Get the alias of the field.
+     * Get the type of the field.
      *
      * @return string
      */
-    public static function alias(): string
+    public static function type(): string
     {
         return 'text';
     }

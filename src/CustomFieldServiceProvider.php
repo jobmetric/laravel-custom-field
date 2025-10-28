@@ -85,8 +85,8 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
                 continue;
             }
 
-            $alias = $customField::alias();
-            $ns = 'custom-field-' . Str::kebab($alias);
+            $type = $customField::type();
+            $ns = 'custom-field-' . Str::kebab($type);
 
             View::addNamespace($ns, $viewsPath);
 
@@ -103,12 +103,12 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
             // Publish assets if present
             $assetsPath = $dirPath . DIRECTORY_SEPARATOR . 'assets';
             if (is_dir($assetsPath)) {
-                $target = public_path('assets/vendor/custom-fields/' . Str::kebab($alias));
+                $target = public_path('assets/vendor/custom-fields/' . Str::kebab($type));
 
                 // Map directory-to-directory; Laravel will copy recursively.
                 $this->publishes([$assetsPath => $target], [
                     'custom-field-assets',
-                    'custom-field-assets:' . $alias,
+                    'custom-field-assets:' . $type,
                 ]);
             }
 

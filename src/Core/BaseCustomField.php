@@ -34,7 +34,7 @@ abstract class BaseCustomField
      */
     public function init(FieldContract $customField): void
     {
-        CustomFieldBuilder::macro(Str::camel($customField::alias()), function () use ($customField) {
+        CustomFieldBuilder::macro(Str::camel($customField::type()), function () use ($customField) {
             CustomFieldBuilder::$fieldContract = $customField;
 
             return CustomFieldBuilder::$fieldContract;
@@ -98,6 +98,6 @@ abstract class BaseCustomField
      */
     protected function getAssetPath(string $file): string
     {
-        return 'assets/vendor/custom-fields/' . Str::kebab(static::alias()) . '/' . $file;
+        return 'assets/vendor/custom-fields/' . Str::kebab(static::type()) . '/' . $file;
     }
 }

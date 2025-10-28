@@ -5,14 +5,14 @@ namespace JobMetric\CustomField\Contracts;
 interface FieldContract
 {
     /**
-     * Get the alias of the field.
+     * Get the type of the field.
      *
      * @return string
      */
-    public static function alias(): string;
+    public static function type(): string;
 
     /**
-     * Render HTML.
+     * Export as HTML.
      *
      * @param array|string|int|bool|null $value
      * @param array $replaces
