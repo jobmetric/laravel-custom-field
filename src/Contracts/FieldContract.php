@@ -24,7 +24,7 @@ interface FieldContract
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
-     * @return string
+     * @return array
      */
     public function toHtml(
         array|string|int|bool|null $value = null,
@@ -36,7 +36,7 @@ interface FieldContract
         bool                       $hasErrorTagJs = true,
         ?string                    $errorTagClass = null,
         ?string                    $prefixId = null
-    ): string;
+    ): array;
 
     /**
      * Export as array.

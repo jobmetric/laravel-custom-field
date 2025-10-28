@@ -114,7 +114,7 @@ class CustomField
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
-     * @return string
+     * @return array
      * @throws Throwable
      */
     public function toHtml(
@@ -127,7 +127,7 @@ class CustomField
         bool                       $hasErrorTagJs = false,
         ?string                    $errorTagClass = null,
         ?string                    $prefixId = 'undefined'
-    ): string
+    ): array
     {
         $fieldInstance = FieldFactory::create($this->type);
 

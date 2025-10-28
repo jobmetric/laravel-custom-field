@@ -142,7 +142,7 @@ trait BaseField
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
-     * @return string
+     * @return array
      * @throws Throwable
      */
     public function toHtml(
@@ -155,7 +155,7 @@ trait BaseField
         bool                       $hasErrorTagJs = true,
         ?string                    $errorTagClass = null,
         ?string                    $prefixId = 'undefined'
-    ): string
+    ): array
     {
         $this->replacement = $replaces;
 
@@ -171,14 +171,18 @@ trait BaseField
             $this->id($prefixId);
         }
 
-        return view('custom-field::' . $this->type(), [
-            'field' => $this,
-            'showInfo' => $showInfo,
-            'classParent' => $classParent,
-            'hasErrorTagForm' => $hasErrorTagForm,
-            'hasErrorTagJs' => $hasErrorTagJs,
-            'errorTagClass' => $errorTagClass,
-        ])->render();
+        return [
+            'body' => view('custom-field::' . $this->type(), [
+                'field' => $this,
+                'showInfo' => $showInfo,
+                'classParent' => $classParent,
+                'hasErrorTagForm' => $hasErrorTagForm,
+                'hasErrorTagJs' => $hasErrorTagJs,
+                'errorTagClass' => $errorTagClass,
+            ])->render(),
+            'scripts' => $this->getScripts(),
+            'styles' => $this->getStyles(),
+        ];
     }
 
     /**
@@ -260,6 +264,8 @@ trait BaseField
             'options' => $options,
             'images' => $images,
             'value' => $this->value,
+            'scripts' => $this->getScripts(),
+            'styles' => $this->getStyles(),
         ];
     }
 
