@@ -12,10 +12,6 @@ return [
     |
     */
 
-    'validation' => [
-        'errors' => 'Validation errors occurred.',
-    ],
-
     'exceptions' => [
         'option_empty_label' => 'Option label cannot be empty.',
         'blade_namespace_registration' => "Error registering Blade namespace ':namespace' with path ':path'. Please ensure the path exists and is accessible.",

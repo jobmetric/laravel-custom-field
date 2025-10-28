@@ -29,12 +29,12 @@ class AttributesPropertiesTest extends TestCase
     {
         $field = CustomFieldBuilder::text()
             ->name('email')
-            ->placeholder('custom-field::base.validation.errors');
+            ->placeholder('email');
 
         $customField = $field->build();
         $html = $customField->toHtml(class: 'extra');
 
-        $this->assertStringContainsString('placeholder="' . trans('custom-field::base.validation.errors') .  '"', $html);
+        $this->assertStringContainsString('placeholder="' . trans('email') .  '"', $html);
         $this->assertStringContainsString('class="form-control extra"', $html);
     }
 }

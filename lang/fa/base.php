@@ -12,10 +12,6 @@ return [
     |
     */
 
-    'validation' => [
-        'errors' => 'خطای اعتبارسنجی رخ داده است.',
-    ],
-
     'exceptions' => [
         'option_empty_label' => 'برچسب گزینه نمی تواند خالی باشد.',
         'blade_namespace_registration' => "خطا در ثبت فضای نام بلید ':namespace' با مسیر ':path'. لطفاً مطمئن شوید که مسیر وجود دارد و قابل دسترسی است.",
