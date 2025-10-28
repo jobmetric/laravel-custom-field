@@ -15,6 +15,7 @@ trait HasClass
      * Append classes.
      *
      * @param string|null $class
+     *
      * @return static
      */
     public function class(string|null $class): static

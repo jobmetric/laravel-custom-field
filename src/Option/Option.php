@@ -23,7 +23,7 @@ class Option
     public string $type;
     public string $name;
     public string $label;
-    public string $discription;
+    public string $description;
     public string $metaInfo;
     public string $extraContent;
     public string $tag;
@@ -31,23 +31,23 @@ class Option
     public bool $selected = false;
 
     public function __construct(
-        string $mode,
-        string $type,
-        string $name,
-        string $label,
-        string $discription,
-        string $metaInfo,
-        string $extraContent,
-        string $tag,
+        string          $mode,
+        string          $type,
+        string          $name,
+        string          $label,
+        string          $description,
+        string          $metaInfo,
+        string          $extraContent,
+        string          $tag,
         string|int|bool $value,
-        bool $selected = false
-        )
+        bool            $selected = false
+    )
     {
         $this->mode = $mode;
         $this->type = $type;
         $this->name = $name;
         $this->label = $label;
-        $this->discription = $discription;
+        $this->description = $description;
         $this->metaInfo = $metaInfo;
         $this->extraContent = $extraContent;
         $this->tag = $tag;
@@ -56,15 +56,16 @@ class Option
     }
 
     /**
-     * Render HTML.
+     * Render the option as HTML.
      *
      * @return string
+     * @throws Throwable
      */
     public function toHtml(): string
     {
-        if($this->type === 'radio' || $this->type === 'checkbox') {
+        if ($this->type === 'radio' || $this->type === 'checkbox') {
             $viewName = $this->mode === 'pro' ? 'optionSuperRadioAndCheckbox' : 'optionRadioAndCheckbox';
-        }else{
+        } else {
             $viewName = 'option';
         }
 
@@ -93,7 +94,7 @@ class Option
             'type' => $this->type,
             'name' => $this->name,
             'label' => $this->label,
-            'description' => $this->discription,
+            'description' => $this->description,
             'metaInfo' => $this->metaInfo,
             'extraContent' => $this->extraContent,
             'tag' => $this->tag,
@@ -107,7 +108,7 @@ class Option
      * get the property of the field
      *
      * @param string $name
-     * @param array  $arguments
+     * @param array $arguments
      *
      * @return mixed
      */

@@ -31,7 +31,7 @@ class Image
     }
 
     /**
-     * Render HTML.
+     * Get image HTML.
      *
      * @return string
      * @throws Throwable

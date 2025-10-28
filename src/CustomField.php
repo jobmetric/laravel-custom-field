@@ -104,13 +104,13 @@ class CustomField
     /**
      * Render HTML.
      *
-     * @param mixed $value
-     * @param array $replaces
-     * @param bool $showInfo
-     * @param string $class
+     * @param mixed       $value
+     * @param array       $replaces
+     * @param bool        $showInfo
+     * @param string      $class
      * @param string|null $classParent
-     * @param bool $hasErrorTagForm
-     * @param bool $hasErrorTagJs
+     * @param bool        $hasErrorTagForm
+     * @param bool        $hasErrorTagJs
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
@@ -126,7 +126,7 @@ class CustomField
         bool                       $hasErrorTagForm = false,
         bool                       $hasErrorTagJs = false,
         ?string                    $errorTagClass = null,
-        ?string                    $prefixId = 'undefined'
+        ?string                    $prefixId = 'undefined',
     ): array
     {
         $fieldInstance = FieldFactory::create($this->type);
@@ -140,22 +140,32 @@ class CustomField
             $this->data,
             $this->params,
             $this->options,
-            $this->images
+            $this->images,
         );
 
-        return $fieldInstance->toHtml($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
+        return $fieldInstance->toHtml(
+            $value,
+            $replaces,
+            $showInfo,
+            $class,
+            $classParent,
+            $hasErrorTagForm,
+            $hasErrorTagJs,
+            $errorTagClass,
+            $prefixId,
+        );
     }
 
     /**
      * Export as array.
      *
-     * @param mixed $value
-     * @param array $replaces
-     * @param bool $showInfo
-     * @param string $class
+     * @param mixed       $value
+     * @param array       $replaces
+     * @param bool        $showInfo
+     * @param string      $class
      * @param string|null $classParent
-     * @param bool $hasErrorTagForm
-     * @param bool $hasErrorTagJs
+     * @param bool        $hasErrorTagForm
+     * @param bool        $hasErrorTagJs
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
@@ -171,7 +181,7 @@ class CustomField
         bool                       $hasErrorTagForm = false,
         bool                       $hasErrorTagJs = false,
         ?string                    $errorTagClass = null,
-        ?string                    $prefixId = 'undefined'
+        ?string                    $prefixId = 'undefined',
     ): array
     {
         $fieldInstance = FieldFactory::create($this->type);
@@ -185,9 +195,19 @@ class CustomField
             $this->data,
             $this->params,
             $this->options,
-            $this->images
+            $this->images,
         );
 
-        return $fieldInstance->toArray($value, $replaces, $showInfo, $class, $classParent, $hasErrorTagForm, $hasErrorTagJs, $errorTagClass, $prefixId);
+        return $fieldInstance->toArray(
+            $value,
+            $replaces,
+            $showInfo,
+            $class,
+            $classParent,
+            $hasErrorTagForm,
+            $hasErrorTagJs,
+            $errorTagClass,
+            $prefixId,
+        );
     }
 }

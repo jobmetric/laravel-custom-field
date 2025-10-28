@@ -4,7 +4,8 @@ namespace JobMetric\CustomField\Option;
 
 use Illuminate\Support\Traits\Macroable;
 use JobMetric\CustomField\Exceptions\OptionEmptyLabelException;
- 
+use Throwable;
+
 
 class OptionBuilder
 {
@@ -50,7 +51,7 @@ class OptionBuilder
      *
      * @var string
      */
-    protected string $discription = '';
+    protected string $description = '';
 
     /**
      * Meta information for the option.
@@ -102,8 +103,8 @@ class OptionBuilder
         $this->mode = $mode;
 
         return $this;
-    } 
-    
+    }
+
     /**
      * Set the type for the option.
      *
@@ -154,15 +155,15 @@ class OptionBuilder
     }
 
     /**
-     * Set the discription for the option.
+     * Set the description for the option.
      *
-     * @param string $discription
+     * @param string $description
      *
      * @return static
      */
-    public function discription(string $discription): static
+    public function description(string $description): static
     {
-        $this->discription = $discription;
+        $this->description = $description;
 
         return $this;
     }
@@ -239,11 +240,12 @@ class OptionBuilder
      * Build the option.
      *
      * @return Option
+     * @throws Throwable
      */
     public function build(): Option
     {
         if ($this->label === '') {
-            throw new OptionEmptyLabelException();
+            throw new OptionEmptyLabelException;
         }
 
         $option = new Option(
@@ -251,11 +253,11 @@ class OptionBuilder
             $this->type,
             $this->name,
             $this->label,
-            $this->discription,
+            $this->description,
             $this->metaInfo,
             $this->extraContent,
-            $this->tag, 
-            $this->value, 
+            $this->tag,
+            $this->value,
             $this->selected
         );
 
@@ -288,7 +290,7 @@ class OptionBuilder
         $this->type = 'selectBox';
         $this->name = '';
         $this->label = '';
-        $this->discription = '';
+        $this->description = '';
         $this->metaInfo = '';
         $this->extraContent = '';
         $this->tag = '';
@@ -298,6 +300,8 @@ class OptionBuilder
 
     /**
      * Finalize builder by building any pending option definition.
+     *
+     * @throws Throwable
      */
     public function finalize(): void
     {

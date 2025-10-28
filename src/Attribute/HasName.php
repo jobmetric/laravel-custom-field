@@ -22,7 +22,9 @@ trait HasName
      *
      * @param string|null $name
      * @param string|null $uniqName
+     *
      * @return static
+     * @throws Throwable
      */
     public function name(string|null $name, string|null $uniqName = null): static
     {
@@ -66,7 +68,17 @@ trait HasName
         $name = $this->getName();
 
         if ($name !== null) {
-            $name = str_replace(['[', ']'], ['.', ''], $name);
+            $name = str_replace(
+                [
+                    '[',
+                    ']',
+                ],
+                [
+                    '.',
+                    '',
+                ],
+                $name,
+            );
         }
 
         return $name;

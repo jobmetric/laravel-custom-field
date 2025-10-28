@@ -19,7 +19,7 @@ class OptionBuilderTest extends TestCase
             ->type('radio')
             ->name('plan')
             ->label('Enterprise')
-            ->discription('Best for large teams')
+            ->description('Best for large teams')
             ->metaInfo('per month')
             ->extraContent('$99')
             ->tag('Popular')

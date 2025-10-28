@@ -28,7 +28,7 @@ class Data
     /**
      * Data constructor.
      *
-     * @param string $name
+     * @param string               $name
      * @param string|int|bool|null $value
      */
     public function __construct(string $name, string|int|bool|null $value)
@@ -38,9 +38,10 @@ class Data
     }
 
     /**
-     * Render HTML attribute.
+     * Get data HTML.
      *
      * @param array $replacement
+     *
      * @return string
      */
     public function toHtml(array $replacement = []): string
@@ -49,7 +50,7 @@ class Data
         $value = $this->value;
         if ($this->value !== null) {
             foreach ($replacement as $search => $replace) {
-                $value = str_replace('{' . $search . '}', $replace, (string) $value);
+                $value = str_replace('{' . $search . '}', $replace, (string)$value);
             }
         }
 
@@ -60,6 +61,7 @@ class Data
      * Export as array.
      *
      * @param array $replacement
+     *
      * @return array
      */
     public function toArray(array $replacement = []): array

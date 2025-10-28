@@ -29,7 +29,8 @@ trait HasData
             $callable($builder = new DataBuilder);
 
             $this->data[] = $builder->build();
-        } else {
+        }
+        else {
             foreach ($callable as $data) {
                 $builder = new DataBuilder;
 

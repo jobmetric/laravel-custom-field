@@ -68,7 +68,7 @@ class DataBuilder
     public function build(): Data
     {
         if ($this->name === '') {
-            throw new OptionEmptyLabelException();
+            throw new OptionEmptyLabelException;
         }
 
         $data = new Data($this->name, $this->value);

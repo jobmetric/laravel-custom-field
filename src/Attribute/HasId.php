@@ -18,6 +18,7 @@ trait HasId
      * Set id.
      *
      * @param string|null $id
+     *
      * @return static
      */
     public function id(string|null $id): static

@@ -24,9 +24,9 @@
                     <span class="badge badge-light-success ms-2 py-2 px-3 fs-7">{{ $field->tag }}</span>
                 @endif
             </div>
-            @if (isset($field->discription) && $field->discription)
+            @if (isset($field->description) && $field->description)
                 <div class="fw-semibold opacity-75">
-                    {{ $field->discription }}
+                    {{ $field->description }}
                 </div>
             @endif
         </div>
