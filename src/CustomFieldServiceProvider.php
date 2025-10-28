@@ -101,7 +101,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
             // Publish assets if present
             $assetsPath = $dirPath . DIRECTORY_SEPARATOR . 'assets';
             if (is_dir($assetsPath)) {
-                $target = public_path('assets/vendor/custom-field/' . Str::kebab($alias));
+                $target = public_path('assets/vendor/custom-fields/' . Str::kebab($alias));
 
                 // Map directory-to-directory; Laravel will copy recursively.
                 $this->publishes([$assetsPath => $target], [
@@ -110,7 +110,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
                 ]);
             }
 
-            $customField->boot($customField);
+            $customField->init($customField);
         }
     }
 }

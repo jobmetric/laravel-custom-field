@@ -37,4 +37,16 @@ class Text extends BaseCustomField implements FieldContract
     {
         return 'text';
     }
+
+    /**
+     * Boot logic for the custom field.
+     *
+     * @param FieldContract $customField
+     *
+     * @return void
+     */
+    public function boot(FieldContract $customField)
+    {
+        // Implement any after boot logic if needed
+    }
 }

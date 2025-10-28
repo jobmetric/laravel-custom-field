@@ -32,25 +32,25 @@ abstract class BaseCustomField
      *
      * @return void
      */
-    public function boot(FieldContract $customField): void
+    public function init(FieldContract $customField): void
     {
         CustomFieldBuilder::macro(Str::camel($customField::alias()), function () use ($customField) {
             CustomFieldBuilder::$fieldContract = $customField;
 
-            return $this;
+            return CustomFieldBuilder::$fieldContract;
         });
 
-        $this->afterBoot($customField);
+        $this->boot($customField);
     }
 
     /**
-     * After boot logic for the custom field.
+     * Boot logic for the custom field.
      *
      * @param FieldContract $customField
      *
      * @return void
      */
-    public function afterBoot(FieldContract $customField)
+    public function boot(FieldContract $customField)
     {
         // Implement any after boot logic if needed
     }
@@ -81,7 +81,7 @@ abstract class BaseCustomField
     {
         $styles = [];
         foreach ($this->styles as $style) {
-            if($this->getAssetPath($style)) {
+            if ($this->getAssetPath($style)) {
                 $styles[] = $this->getAssetPath($style);
             }
         }
@@ -94,16 +94,10 @@ abstract class BaseCustomField
      *
      * @param string $file
      *
-     * @return string|null
+     * @return string
      */
-    protected function getAssetPath(string $file): ?string
+    protected function getAssetPath(string $file): string
     {
-        $path = 'assets/vendor/custom-field/' . static::alias() . '/' . $file;
-
-        if (! file_exists($path)) {
-            return null;
-        }
-
-        return $path;
+        return 'assets/vendor/custom-fields/' . Str::kebab(static::alias()) . '/' . $file;
     }
 }
