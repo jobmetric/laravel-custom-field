@@ -62,10 +62,14 @@ abstract class BaseCustomField
      */
     public function getScripts(): array
     {
+        $template = config('custom-field.template');
+
         $scripts = [];
-        foreach ($this->scripts as $script) {
-            if ($this->getAssetPath($script)) {
-                $scripts[] = $this->getAssetPath($script);
+        if(isset($this->scripts[$template])) {
+            foreach ($this->scripts[$template] as $script) {
+                if ($this->getAssetPath($script)) {
+                    $scripts[] = $this->getAssetPath($script);
+                }
             }
         }
 
@@ -79,10 +83,14 @@ abstract class BaseCustomField
      */
     public function getStyles(): array
     {
+        $template = config('custom-field.template');
+
         $styles = [];
-        foreach ($this->styles as $style) {
-            if ($this->getAssetPath($style)) {
-                $styles[] = $this->getAssetPath($style);
+        if(isset($this->styles[$template])) {
+            foreach ($this->styles[$template] as $style) {
+                if ($this->getAssetPath($style)) {
+                    $styles[] = $this->getAssetPath($style);
+                }
             }
         }
 

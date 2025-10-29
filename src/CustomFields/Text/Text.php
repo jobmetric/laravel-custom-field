@@ -16,7 +16,9 @@ class Text extends BaseCustomField implements FieldContract
      * @var array
      */
     public array $scripts = [
-        'script.js',
+        'default' => [
+            'script.js',
+        ]
     ];
 
     /**
@@ -25,7 +27,9 @@ class Text extends BaseCustomField implements FieldContract
      * @var array
      */
     public array $styles = [
-        'style.css',
+        'default' => [
+            'style.css',
+        ]
     ];
 
     /**
