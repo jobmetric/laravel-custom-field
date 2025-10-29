@@ -77,18 +77,17 @@ class CustomField
     public array $images = [];
 
     public function __construct(
-        string       $type,
-        string|null  $label,
-        string|null  $info,
+        string $type,
+        string|null $label,
+        string|null $info,
         array|string $validation = null,
-        array        $attributes = [],
-        array        $properties = [],
-        array        $data = [],
-        array        $params = [],
-        array        $options = [],
-        array        $images = [],
-    )
-    {
+        array $attributes = [],
+        array $properties = [],
+        array $data = [],
+        array $params = [],
+        array $options = [],
+        array $images = [],
+    ) {
         $this->type = $type;
         $this->label = $label;
         $this->info = $info;
@@ -104,13 +103,13 @@ class CustomField
     /**
      * Render HTML.
      *
-     * @param mixed       $value
-     * @param array       $replaces
-     * @param bool        $showInfo
-     * @param string      $class
+     * @param mixed $value
+     * @param array $replaces
+     * @param bool $showInfo
+     * @param string $class
      * @param string|null $classParent
-     * @param bool        $hasErrorTagForm
-     * @param bool        $hasErrorTagJs
+     * @param bool $hasErrorTagForm
+     * @param bool $hasErrorTagJs
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
@@ -119,16 +118,15 @@ class CustomField
      */
     public function toHtml(
         array|string|int|bool|null $value = 'undefined',
-        array                      $replaces = [],
-        bool                       $showInfo = true,
-        string                     $class = 'undefined',
-        ?string                    $classParent = null,
-        bool                       $hasErrorTagForm = false,
-        bool                       $hasErrorTagJs = false,
-        ?string                    $errorTagClass = null,
-        ?string                    $prefixId = 'undefined',
-    ): array
-    {
+        array $replaces = [],
+        bool $showInfo = true,
+        string $class = 'undefined',
+        ?string $classParent = null,
+        bool $hasErrorTagForm = false,
+        bool $hasErrorTagJs = false,
+        ?string $errorTagClass = null,
+        ?string $prefixId = 'undefined',
+    ): array {
         $fieldInstance = FieldFactory::create($this->type);
 
         $fieldInstance->instantiate(
@@ -159,13 +157,13 @@ class CustomField
     /**
      * Export as array.
      *
-     * @param mixed       $value
-     * @param array       $replaces
-     * @param bool        $showInfo
-     * @param string      $class
+     * @param mixed $value
+     * @param array $replaces
+     * @param bool $showInfo
+     * @param string $class
      * @param string|null $classParent
-     * @param bool        $hasErrorTagForm
-     * @param bool        $hasErrorTagJs
+     * @param bool $hasErrorTagForm
+     * @param bool $hasErrorTagJs
      * @param string|null $errorTagClass
      * @param string|null $prefixId
      *
@@ -174,16 +172,15 @@ class CustomField
      */
     public function toArray(
         array|string|int|bool|null $value = 'undefined',
-        array                      $replaces = [],
-        bool                       $showInfo = true,
-        string                     $class = 'undefined',
-        ?string                    $classParent = null,
-        bool                       $hasErrorTagForm = false,
-        bool                       $hasErrorTagJs = false,
-        ?string                    $errorTagClass = null,
-        ?string                    $prefixId = 'undefined',
-    ): array
-    {
+        array $replaces = [],
+        bool $showInfo = true,
+        string $class = 'undefined',
+        ?string $classParent = null,
+        bool $hasErrorTagForm = false,
+        bool $hasErrorTagJs = false,
+        ?string $errorTagClass = null,
+        ?string $prefixId = 'undefined',
+    ): array {
         $fieldInstance = FieldFactory::create($this->type);
 
         $fieldInstance->instantiate(
