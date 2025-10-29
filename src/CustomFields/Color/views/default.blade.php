@@ -1,7 +1,7 @@
 @php
-$attrs = $field->getAttribute();
-$width = (array_key_exists('width', $attrs) && $attrs['width']) ? "width: {$attrs['width']}px; " : '';
-$height = (array_key_exists('height', $attrs) && $attrs['height']) ? "height: {$attrs['height']}px; " : '';
+    $attrs = $field->getAttribute();
+    $width = (array_key_exists('width', $attrs) && $attrs['width']) ? "width: {$attrs['width']}px; " : '';
+    $height = (array_key_exists('height', $attrs) && $attrs['height']) ? "height: {$attrs['height']}px; " : '';
 @endphp
 <div class="{{ $classParent ?? 'mb-10' }}" style="{{ $width .$height }}">
     <label class="form-label d-flex justify-content-between align-items-center">
@@ -11,7 +11,8 @@ $height = (array_key_exists('height', $attrs) && $attrs['height']) ? "height: {$
             <span>{!! trans($field->getLabel()) !!}</span>
         @endif
         @if($showInfo)
-            <div class="text-gray-600 fs-7 d-none d-md-block d-lg-none d-xl-block">{!! trans($field->getInfo()) !!}</div>
+            <div
+                class="text-gray-600 fs-7 d-none d-md-block d-lg-none d-xl-block">{!! trans($field->getInfo()) !!}</div>
         @endif
     </label>
     <input type="color" name="{{ $field->getName() }}"{!! $field->getAttributeTheme() !!}>
@@ -20,10 +21,11 @@ $height = (array_key_exists('height', $attrs) && $attrs['height']) ? "height: {$
     @endif
     @if($hasErrorTagForm)
         @error($field->getNameDot())
-            <div class="{{ $errorTagClass ?? 'custom-field-error' }} text-danger fs-7 mt-2">{{ $message }}</div>
+        <div class="{{ $errorTagClass ?? 'custom-field-error' }} text-danger fs-7 mt-2">{{ $message }}</div>
         @enderror
     @endif
     @if($hasErrorTagJs)
-        <div class="{{ $errorTagClass ?? 'custom-field-error' }} text-danger fs-7 mt-2" data-name="{{ $field->getNameDot() }}"></div>
+        <div class="{{ $errorTagClass ?? 'custom-field-error' }} text-danger fs-7 mt-2"
+             data-name="{{ $field->getNameDot() }}"></div>
     @endif
 </div>
