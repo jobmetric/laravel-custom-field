@@ -1,28 +1,26 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\CustomFields\Image;
 
 use JobMetric\CustomField\Attribute\HasAlt;
 use JobMetric\CustomField\Attribute\HasHeight;
 use JobMetric\CustomField\Attribute\HasSrc;
 use JobMetric\CustomField\Attribute\HasWidth;
 use JobMetric\CustomField\Contracts\FieldContract;
+use JobMetric\CustomField\Core\BaseCustomField;
 
-class Image implements FieldContract
+class Image extends BaseCustomField implements FieldContract
 {
-    use BaseField,
-        HasSrc,
-        HasAlt,
-        HasWidth,
-        HasHeight;
+    use HasSrc, HasAlt, HasWidth, HasHeight;
 
     /**
-     * get the type of the field
+     * Get the type of the field.
      *
      * @return string
      */
-    private function type(): string
+    public static function type(): string
     {
         return 'image';
     }
 }
+

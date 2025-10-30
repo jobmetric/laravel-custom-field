@@ -16,3 +16,4 @@ $height = $field->getAttribute('height') ? "height: {$field->getAttribute('heigh
         <div class="{{ $errorTagClass ?? 'custom-field-error' }} text-danger fs-7 mt-2" data-name="{{ $field->getNameDot() }}"></div>
     @endif
 </div>
+
