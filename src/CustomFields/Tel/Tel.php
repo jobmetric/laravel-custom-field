@@ -1,0 +1,24 @@
+<?php
+
+namespace JobMetric\CustomField\CustomFields\Tel;
+
+use JobMetric\CustomField\Attribute\HasPattern;
+use JobMetric\CustomField\Attribute\HasPlaceholder;
+use JobMetric\CustomField\Contracts\FieldContract;
+use JobMetric\CustomField\Core\BaseCustomField;
+
+class Tel extends BaseCustomField implements FieldContract
+{
+    use HasPattern, HasPlaceholder;
+
+    /**
+     * Get the type of the field.
+     *
+     * @return string
+     */
+    public static function type(): string
+    {
+        return 'tel';
+    }
+}
+

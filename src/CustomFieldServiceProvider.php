@@ -54,6 +54,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
         $registry->register(new \JobMetric\CustomField\CustomFields\Radio\Radio);
         $registry->register(new \JobMetric\CustomField\CustomFields\Range\Range);
         $registry->register(new \JobMetric\CustomField\CustomFields\Select\Select);
+        $registry->register(new \JobMetric\CustomField\CustomFields\Tel\Tel);
         $registry->register(new \JobMetric\CustomField\CustomFields\Text\Text);
     }
 
