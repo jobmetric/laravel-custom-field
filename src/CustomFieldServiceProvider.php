@@ -51,6 +51,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
         $registry->register(new \JobMetric\CustomField\CustomFields\Month\Month);
         $registry->register(new \JobMetric\CustomField\CustomFields\Number\Number);
         $registry->register(new \JobMetric\CustomField\CustomFields\Password\Password);
+        $registry->register(new \JobMetric\CustomField\CustomFields\Radio\Radio);
         $registry->register(new \JobMetric\CustomField\CustomFields\Text\Text);
     }
 
