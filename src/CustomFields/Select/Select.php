@@ -1,25 +1,23 @@
 <?php
 
-namespace JobMetric\CustomField\Fields;
+namespace JobMetric\CustomField\CustomFields\Select;
 
 use JobMetric\CustomField\Attribute\HasPlaceholder;
 use JobMetric\CustomField\Contracts\FieldContract;
+use JobMetric\CustomField\Core\BaseCustomField;
 use JobMetric\CustomField\Option\HasOption;
 use JobMetric\CustomField\Property\HasMultiple;
 
-class Select implements FieldContract
+class Select extends BaseCustomField implements FieldContract
 {
-    use BaseField,
-        HasOption,
-        HasPlaceholder,
-        HasMultiple;
+    use HasOption, HasPlaceholder, HasMultiple;
 
     /**
-     * get the type of the field
+     * Get the type of the field.
      *
      * @return string
      */
-    private function type(): string
+    public static function type(): string
     {
         return 'select';
     }
