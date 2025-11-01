@@ -14,7 +14,7 @@ class DateTimeLocal extends BaseCustomField implements FieldContract
      */
     public static function type(): string
     {
-        return 'datetime-local';
+        return 'dateTimeLocal';
     }
 }
 

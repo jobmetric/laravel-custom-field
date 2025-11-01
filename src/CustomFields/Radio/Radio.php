@@ -18,7 +18,7 @@ class Radio extends BaseCustomField implements FieldContract
      */
     public static function type(): string
     {
-        return 'radioAndCheckbox';
+        return 'radio';
     }
 }
 
