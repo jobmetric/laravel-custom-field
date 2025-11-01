@@ -1,10 +1,11 @@
-﻿<?php
+<?php
 
 namespace JobMetric\CustomField;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+use JobMetric\CustomField\Commands\GenerateIdeHelpers;
 use JobMetric\CustomField\Contracts\FieldContract;
 use JobMetric\CustomField\Exceptions\BladeNamespaceRegistrationException;
 use JobMetric\CustomField\Exceptions\BladeViewNotFoundException;
@@ -25,10 +26,10 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
      */
     public function configuration(PackageCore $package): void
     {
-        $package
-            ->name('laravel-custom-field')
+        $package->name('laravel-custom-field')
             ->hasConfig()
             ->hasTranslation()
+            ->registerCommand(GenerateIdeHelpers::class)
             ->registerClass('CustomFieldRegistry', CustomFieldRegistry::class, RegisterClassTypeEnum::SINGLETON());
     }
 
