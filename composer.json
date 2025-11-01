@@ -36,6 +36,17 @@
             ]
         }
     },
+    "scripts": {
+        "post-install-cmd": [
+            "@php scripts/generate_ide_if_local.php"
+        ],
+        "post-update-cmd": [
+            "@php scripts/generate_ide_if_local.php"
+        ],
+        "post-autoload-dump": [
+            "@php scripts/generate_ide_if_local.php"
+        ]
+    },
     "minimum-stability": "stable",
     "support": {
         "issues": "https://github.com/jobmetric/laravel-custom-field/issues",
