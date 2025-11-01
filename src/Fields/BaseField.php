@@ -3,8 +3,8 @@
 namespace JobMetric\CustomField\Fields;
 
 use BadMethodCallException;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use JobMetric\CustomField\Attribute\Data\HasData;
 use JobMetric\CustomField\Attribute\DisableAutoComplete;
 use JobMetric\CustomField\Attribute\HasClass;
@@ -12,6 +12,7 @@ use JobMetric\CustomField\Attribute\HasId;
 use JobMetric\CustomField\Attribute\HasName;
 use JobMetric\CustomField\Attribute\HasValue;
 use JobMetric\CustomField\CustomField;
+use JobMetric\CustomField\Exceptions\BladeViewNotFoundException;
 use JobMetric\CustomField\Property\HasAutoFocus;
 use JobMetric\CustomField\Property\HasDisable;
 use JobMetric\CustomField\Property\HasReadonly;
@@ -35,16 +36,7 @@ use Throwable;
  */
 trait BaseField
 {
-    use HasName,
-        HasId,
-        HasClass,
-        HasValue,
-        HasData,
-        HasDisable,
-        HasAutoFocus,
-        HasReadonly,
-        HasRequired,
-        DisableAutoComplete;
+    use HasName, HasId, HasClass, HasValue, HasData, HasDisable, HasAutoFocus, HasReadonly, HasRequired, DisableAutoComplete;
 
     /**
      * the label of the field
@@ -117,8 +109,17 @@ trait BaseField
      *
      * @return void
      */
-    public function instantiate(string|null $label, string|null $info, array|string|null $validation, array $attributes, array $properties, array $data, array $params, array $options, array $images): void
-    {
+    public function instantiate(
+        string|null $label,
+        string|null $info,
+        array|string|null $validation,
+        array $attributes,
+        array $properties,
+        array $data,
+        array $params,
+        array $options,
+        array $images
+    ): void {
         $this->label = $label;
         $this->info = $info;
         $this->validation = $validation;
@@ -149,16 +150,15 @@ trait BaseField
      */
     public function toHtml(
         array|string|int|bool|null $value = 'undefined',
-        array                      $replaces = [],
-        bool                       $showInfo = true,
-        string                     $class = 'undefined',
-        ?string                    $classParent = null,
-        bool                       $hasErrorTagForm = true,
-        bool                       $hasErrorTagJs = true,
-        ?string                    $errorTagClass = null,
-        ?string                    $prefixId = 'undefined'
-    ): array
-    {
+        array $replaces = [],
+        bool $showInfo = true,
+        string $class = 'undefined',
+        ?string $classParent = null,
+        bool $hasErrorTagForm = true,
+        bool $hasErrorTagJs = true,
+        ?string $errorTagClass = null,
+        ?string $prefixId = 'undefined'
+    ): array {
         $this->replacement = $replaces;
 
         if ($value != 'undefined') {
@@ -174,7 +174,7 @@ trait BaseField
         }
 
         $namespace = 'custom-field-' . Str::kebab($this->type());
-        $template = config('custom-field.template', 'default');
+        $template = $this->resolvedTemplate ?? config('custom-field.template', 'default');
 
         $viewName = $namespace . '::' . $template;
         if (! View::exists($viewName)) {
@@ -182,21 +182,22 @@ trait BaseField
 
             // persist resolved template so scripts/styles match the blade used
             $this->resolvedTemplate = 'default';
-        } else {
+        }
+        else {
             $this->resolvedTemplate = $template;
         }
 
         return [
-            'body' => view($viewName, [
-                'field' => $this,
-                'showInfo' => $showInfo,
-                'classParent' => $classParent,
+            'body'    => view($viewName, [
+                'field'           => $this,
+                'showInfo'        => $showInfo,
+                'classParent'     => $classParent,
                 'hasErrorTagForm' => $hasErrorTagForm,
-                'hasErrorTagJs' => $hasErrorTagJs,
-                'errorTagClass' => $errorTagClass,
+                'hasErrorTagJs'   => $hasErrorTagJs,
+                'errorTagClass'   => $errorTagClass,
             ])->render(),
             'scripts' => $this->getScripts(),
-            'styles' => $this->getStyles(),
+            'styles'  => $this->getStyles(),
         ];
     }
 
@@ -217,16 +218,15 @@ trait BaseField
      */
     public function toArray(
         array|string|int|bool|null $value = 'undefined',
-        array                      $replaces = [],
-        bool                       $showInfo = true,
-        string                     $class = 'undefined',
-        ?string                    $classParent = null,
-        bool                       $hasErrorTagForm = true,
-        bool                       $hasErrorTagJs = true,
-        ?string                    $errorTagClass = null,
-        ?string                    $prefixId = 'undefined'
-    ): array
-    {
+        array $replaces = [],
+        bool $showInfo = true,
+        string $class = 'undefined',
+        ?string $classParent = null,
+        bool $hasErrorTagForm = true,
+        bool $hasErrorTagJs = true,
+        ?string $errorTagClass = null,
+        ?string $prefixId = 'undefined'
+    ): array {
         $this->replacement = $replaces;
 
         if ($value != 'undefined') {
@@ -246,6 +246,7 @@ trait BaseField
             if (method_exists($data, 'toArray')) {
                 return $data->toArray($this->replacement);
             }
+
             return null;
         })->filter()->values()->all();
 
@@ -254,6 +255,7 @@ trait BaseField
             if (method_exists($option, 'toArray')) {
                 return $option->toArray();
             }
+
             return null;
         })->filter()->values()->all();
 
@@ -262,25 +264,26 @@ trait BaseField
             if (method_exists($image, 'toArray')) {
                 return $image->toArray();
             }
+
             return null;
         })->filter()->values()->all();
 
         return [
-            'type' => $this->type(),
-            'label' => $this->label,
-            'info' => $this->info,
+            'type'       => $this->type(),
+            'label'      => $this->label,
+            'info'       => $this->info,
             'validation' => $this->validation,
-            'name' => $this->getName(),
-            'nameDot' => $this->getNameDot(),
+            'name'       => $this->getName(),
+            'nameDot'    => $this->getNameDot(),
             'attributes' => $this->attributes,
             'properties' => $this->properties,
-            'data' => $dataItems,
-            'params' => $this->params,
-            'options' => $options,
-            'images' => $images,
-            'value' => $this->value,
-            'scripts' => $this->getScripts(),
-            'styles' => $this->getStyles(),
+            'data'       => $dataItems,
+            'params'     => $this->params,
+            'options'    => $options,
+            'images'     => $images,
+            'value'      => $this->value,
+            'scripts'    => $this->getScripts(),
+            'styles'     => $this->getStyles(),
         ];
     }
 
@@ -327,6 +330,34 @@ trait BaseField
     }
 
     /**
+     * Override template at runtime with fallback to default when missing.
+     *
+     * @param string $template
+     *
+     * @return static
+     * @throws Throwable
+     */
+    public function template(string $template): static
+    {
+        $namespace = 'custom-field-' . Str::kebab($this->type());
+        $qualified = "{$namespace}::{$template}";
+
+        if (! View::exists($qualified)) {
+            // Build expected blade file path to include in exception
+            $fqcn = static::class;
+            $dirPath = class_directory_path($fqcn);
+            $viewsPath = $dirPath ? $dirPath . DIRECTORY_SEPARATOR . 'views' : 'views';
+            $expectedFile = $viewsPath . DIRECTORY_SEPARATOR . $template . '.blade.php';
+
+            throw new BladeViewNotFoundException($qualified, $expectedFile);
+        }
+
+        $this->resolvedTemplate = $template;
+
+        return $this;
+    }
+
+    /**
      * Get the attribute theme
      *
      * @return string
@@ -334,7 +365,7 @@ trait BaseField
     public function getAttributeTheme(): string
     {
         $attributes = '';
-        if (!array_key_exists('class', $this->attributes)) {
+        if (! array_key_exists('class', $this->attributes)) {
             $this->attributes['class'] = 'form-control';
         }
 
@@ -362,7 +393,7 @@ trait BaseField
             return $this->attributes;
         }
 
-        if (!array_key_exists($key, $this->attributes)) {
+        if (! array_key_exists($key, $this->attributes)) {
             throw new BadMethodCallException("attributes '$key' does not exist");
         }
 
@@ -381,7 +412,8 @@ trait BaseField
     {
         if (str_starts_with($name, 'get')) {
             return $this->get(lcfirst(substr($name, 3)));
-        } else {
+        }
+        else {
             throw new BadMethodCallException("Method '$name' does not exist");
         }
     }
@@ -395,7 +427,7 @@ trait BaseField
      */
     public function get(string $property): mixed
     {
-        if (!property_exists($this, $property)) {
+        if (! property_exists($this, $property)) {
             throw new BadMethodCallException("Property '$property' does not exist");
         }
 
@@ -411,18 +443,7 @@ trait BaseField
     {
         $this->beforeBuild();
 
-        return new CustomField(
-            $this->type(),
-            $this->label,
-            $this->info,
-            $this->validation,
-            $this->attributes,
-            $this->properties,
-            $this->data,
-            $this->params,
-            $this->options,
-            $this->images
-        );
+        return new CustomField($this->type(), $this->label, $this->info, $this->validation, $this->attributes, $this->properties, $this->data, $this->params, $this->options, $this->images);
     }
 
     public function beforeBuild(): void
