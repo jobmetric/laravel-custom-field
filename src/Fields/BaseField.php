@@ -3,6 +3,8 @@
 namespace JobMetric\CustomField\Fields;
 
 use BadMethodCallException;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\View;
 use JobMetric\CustomField\Attribute\Data\HasData;
 use JobMetric\CustomField\Attribute\DisableAutoComplete;
 use JobMetric\CustomField\Attribute\HasClass;
@@ -171,8 +173,21 @@ trait BaseField
             $this->id($prefixId);
         }
 
+        $namespace = 'custom-field-' . Str::kebab($this->type());
+        $template = config('custom-field.template', 'default');
+
+        $viewName = $namespace . '::' . $template;
+        if (! View::exists($viewName)) {
+            $viewName = $namespace . '::default';
+
+            // persist resolved template so scripts/styles match the blade used
+            $this->resolvedTemplate = 'default';
+        } else {
+            $this->resolvedTemplate = $template;
+        }
+
         return [
-            'body' => view('custom-field::' . $this->type(), [
+            'body' => view($viewName, [
                 'field' => $this,
                 'showInfo' => $showInfo,
                 'classParent' => $classParent,

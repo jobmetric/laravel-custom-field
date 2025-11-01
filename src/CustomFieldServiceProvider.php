@@ -84,7 +84,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
                 continue;
             }
 
-            // Expect a "views" directory containing "default.blade.php".
+            // Expect a "views" directory containing a blade view per template.
             $viewsPath = $dirPath . DIRECTORY_SEPARATOR . 'views';
             $defaultTemplate = $viewsPath . DIRECTORY_SEPARATOR . 'default.blade.php';
 
@@ -92,6 +92,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
                 throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $viewsPath . ' (directory missing)');
             }
 
+            // default template must always exist
             if (! file_exists($defaultTemplate)) {
                 throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $defaultTemplate);
             }
@@ -111,9 +112,9 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
                 throw new BladeNamespaceRegistrationException($ns, $viewsPath);
             }
 
-            // Validate entry view resolution
-            if (! View::exists("{$ns}::view")) {
-                throw new BladeViewNotFoundException("{$ns}::view", $defaultTemplate);
+            // Ensure at least default view is resolvable; template-specific view is optional
+            if (! View::exists("{$ns}::default")) {
+                throw new BladeNamespaceRegistrationException($ns, $viewsPath);
             }
 
             // Publish assets if present

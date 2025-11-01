@@ -2,6 +2,7 @@
 
 namespace JobMetric\CustomField\Core;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use JobMetric\CustomField\Contracts\FieldContract;
 use JobMetric\CustomField\CustomFieldBuilder;
@@ -10,6 +11,15 @@ use JobMetric\CustomField\Fields\BaseField;
 abstract class BaseCustomField
 {
     use BaseField;
+
+    /**
+     * The actual blade template resolved for this instance
+     * (e.g. 'default', 'bootstrap', 'tailwind').
+     * If null, it will be lazily resolved.
+     *
+     * @var string|null
+     */
+    protected ?string $resolvedTemplate = null;
 
     /**
      * The scripts to be included for the custom field.
@@ -35,9 +45,11 @@ abstract class BaseCustomField
     public function init(FieldContract $customField): void
     {
         CustomFieldBuilder::macro(Str::camel($customField::type()), function () use ($customField) {
-            CustomFieldBuilder::$fieldContract = $customField;
+            // Provide a fresh instance for each builder chain to avoid shared state
+            $instance = clone $customField;
+            CustomFieldBuilder::$fieldContract = $instance;
 
-            return CustomFieldBuilder::$fieldContract;
+            return $instance;
         });
 
         $this->boot($customField);
@@ -62,14 +74,13 @@ abstract class BaseCustomField
      */
     public function getScripts(): array
     {
-        $template = config('custom-field.template');
+        $this->ensureTemplateResolved();
 
         $scripts = [];
-        if(isset($this->scripts[$template])) {
-            foreach ($this->scripts[$template] as $script) {
-                if ($this->getAssetPath($script)) {
-                    $scripts[] = $this->getAssetPath($script);
-                }
+        $list = $this->scripts[$this->resolvedTemplate] ?? [];
+        foreach ($list as $script) {
+            if ($this->getAssetPath($script)) {
+                $scripts[] = $this->getAssetPath($script);
             }
         }
 
@@ -83,14 +94,13 @@ abstract class BaseCustomField
      */
     public function getStyles(): array
     {
-        $template = config('custom-field.template');
+        $this->ensureTemplateResolved();
 
         $styles = [];
-        if(isset($this->styles[$template])) {
-            foreach ($this->styles[$template] as $style) {
-                if ($this->getAssetPath($style)) {
-                    $styles[] = $this->getAssetPath($style);
-                }
+        $list = $this->styles[$this->resolvedTemplate] ?? [];
+        foreach ($list as $style) {
+            if ($this->getAssetPath($style)) {
+                $styles[] = $this->getAssetPath($style);
             }
         }
 
@@ -107,5 +117,20 @@ abstract class BaseCustomField
     protected function getAssetPath(string $file): string
     {
         return 'assets/vendor/custom-fields/' . Str::kebab(static::type()) . '/' . $file;
+    }
+
+    /**
+     * Ensure the template is resolved and cached on this instance.
+     *
+     * @return void
+     */
+    private function ensureTemplateResolved(): void
+    {
+        if ($this->resolvedTemplate === null) {
+            $configured = config('custom-field.template', 'default');
+            $ns = 'custom-field-' . Str::kebab(static::type());
+
+            $this->resolvedTemplate = View::exists("{$ns}::{$configured}") ? $configured : 'default';
+        }
     }
 }
