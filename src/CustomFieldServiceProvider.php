@@ -42,6 +42,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
     {
         $registry = $this->app->make('CustomFieldRegistry');
 
+        $registry->register(new \JobMetric\CustomField\CustomFields\Checkbox\Checkbox);
         $registry->register(new \JobMetric\CustomField\CustomFields\Color\Color);
         $registry->register(new \JobMetric\CustomField\CustomFields\Date\Date);
         $registry->register(new \JobMetric\CustomField\CustomFields\DateTimeLocal\DateTimeLocal);
