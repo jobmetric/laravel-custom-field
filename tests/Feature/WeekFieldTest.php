@@ -17,10 +17,11 @@ class WeekFieldTest extends TestCase
             ->name('week_of_year')
             ->label('Week');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="week"', $html);
         $this->assertStringContainsString('name="week_of_year"', $html);
     }
 }
-

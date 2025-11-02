@@ -17,11 +17,12 @@ class TimeFieldTest extends TestCase
             ->name('meeting_time')
             ->label('Meeting Time');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         // Uses custom input-group time picker markup in the theme
         $this->assertStringContainsString('id="kt_td_picker_time_only"', $html);
         $this->assertStringContainsString('data-td-toggle="datetimepicker"', $html);
     }
 }
-

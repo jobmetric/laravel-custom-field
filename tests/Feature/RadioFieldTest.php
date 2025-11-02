@@ -21,7 +21,9 @@ class RadioFieldTest extends TestCase
             });
 
         $customField = $field->build();
-        $html = $customField->toHtml();
+        $htmlArray = $customField->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('type="radio"', $html);
         $this->assertStringContainsString('name="plan"', $html);
@@ -30,4 +32,3 @@ class RadioFieldTest extends TestCase
         $this->assertStringContainsString('checked', $html);
     }
 }
-

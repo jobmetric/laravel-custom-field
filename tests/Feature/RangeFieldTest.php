@@ -19,7 +19,9 @@ class RangeFieldTest extends TestCase
             ->min(0)
             ->max(10);
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="range"', $html);
         $this->assertStringContainsString('name="volume"', $html);

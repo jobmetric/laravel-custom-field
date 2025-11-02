@@ -17,11 +17,12 @@ class EmailFieldTest extends TestCase
             ->name('email')
             ->label('Email');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         // Theme uses an input-group example markup with domain suffix
         $this->assertStringContainsString('input-group', $html);
         $this->assertStringContainsString('@example.com', $html);
     }
 }
-

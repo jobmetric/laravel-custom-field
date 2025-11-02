@@ -19,11 +19,12 @@ class ColorFieldTest extends TestCase
             ->info('Pick a color')
             ->required();
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="color"', $html);
         $this->assertStringContainsString('name="favcolor"', $html);
         $this->assertStringContainsString('class="required"', $html);
     }
 }
-

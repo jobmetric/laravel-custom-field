@@ -17,10 +17,11 @@ class MonthFieldTest extends TestCase
             ->name('salary_month')
             ->label('Salary Month');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="month"', $html);
         $this->assertStringContainsString('name="salary_month"', $html);
     }
 }
-

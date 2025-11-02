@@ -17,10 +17,11 @@ class DateTimeLocalFieldTest extends TestCase
             ->name('appointment')
             ->label('Appointment');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="datetime-local"', $html);
         $this->assertStringContainsString('name="appointment"', $html);
     }
 }
-

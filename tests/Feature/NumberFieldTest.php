@@ -18,10 +18,11 @@ class NumberFieldTest extends TestCase
             ->label('Age')
             ->info('Enter your age');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="number"', $html);
         $this->assertStringContainsString('name="age"', $html);
     }
 }
-

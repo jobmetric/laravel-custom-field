@@ -21,7 +21,9 @@ class ImageFieldTest extends TestCase
             ->height(80);
 
         $customField = $field->build();
-        $html = $customField->toHtml();
+        $htmlArray = $customField->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('type="image"', $html);
         $this->assertStringContainsString('name="submitImage"', $html);
@@ -30,4 +32,3 @@ class ImageFieldTest extends TestCase
         $this->assertStringContainsString('style="width: 120px; height: 80px; "', $html);
     }
 }
-

@@ -17,9 +17,10 @@ class PasswordFieldTest extends TestCase
             ->name('password')
             ->label('Password');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('type="password"', $html);
     }
 }
-

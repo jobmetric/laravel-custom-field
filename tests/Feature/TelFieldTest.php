@@ -17,10 +17,11 @@ class TelFieldTest extends TestCase
             ->name('phone')
             ->label('Phone');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="tel"', $html);
         $this->assertStringContainsString('name="phone"', $html);
     }
 }
-

@@ -17,7 +17,9 @@ class AttributesPropertiesTest extends TestCase
             ->name('user[name]', 'u1');
 
         $customField = $field->build();
-        $html = $customField->toHtml(prefixId: 'input');
+        $htmlArray = $customField->toHtml(prefixId: 'input');
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('id="input_u1"', $html);
     }
@@ -32,10 +34,11 @@ class AttributesPropertiesTest extends TestCase
             ->placeholder('email');
 
         $customField = $field->build();
-        $html = $customField->toHtml(class: 'extra');
+        $htmlArray = $customField->toHtml(class: 'extra');
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('placeholder="' . trans('email') .  '"', $html);
         $this->assertStringContainsString('class="form-control extra"', $html);
     }
 }
-

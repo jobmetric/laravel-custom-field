@@ -17,11 +17,12 @@ class HiddenFieldTest extends TestCase
             ->name('token')
             ->value('abc123');
 
-        $html = $field->build()->toHtml();
+        $htmlArray = $field->build()->toHtml();
+        $this->assertIsArray($htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<input type="hidden"', $html);
         $this->assertStringContainsString('name="token"', $html);
         $this->assertStringContainsString('value="abc123"', $html);
     }
 }
-

@@ -42,7 +42,7 @@ class TextFieldTest extends TestCase
         $this->assertSame('John', $array['value']);
         $this->assertStringContainsString('form-control', $array['attributes']['class'] ?? '');
 
-        $html = $customField->toHtml(
+        $htmlArray = $customField->toHtml(
             value: 'John',
             replaces: ['id' => '42'],
             class: 'extra-class',
@@ -52,10 +52,14 @@ class TextFieldTest extends TestCase
             errorTagClass: null,
             prefixId: 'input'
         );
+        $this->assertIsArray($htmlArray);
+        $this->assertArrayHasKey('body', $htmlArray);
+        $this->assertArrayHasKey('scripts', $htmlArray);
+        $this->assertArrayHasKey('styles', $htmlArray);
 
+        $html = $htmlArray['body'];
         $this->assertStringContainsString('<input type="text"', $html);
         $this->assertStringContainsString('name="user[name]"', $html);
         $this->assertStringContainsString('value="John"', $html);
     }
 }
-

@@ -24,7 +24,10 @@ class SelectFieldTest extends TestCase
             });
 
         $customField = $field->build();
-        $html = $customField->toHtml();
+        $htmlArray = $customField->toHtml();
+        $this->assertIsArray($htmlArray);
+        $this->assertArrayHasKey('body', $htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<select name="country"', $html);
         $this->assertStringContainsString('<option value="IR" selected>', $html);
@@ -47,7 +50,10 @@ class SelectFieldTest extends TestCase
             });
 
         $customField = $field->build();
-        $html = $customField->toHtml();
+        $htmlArray = $customField->toHtml();
+        $this->assertIsArray($htmlArray);
+        $this->assertArrayHasKey('body', $htmlArray);
+        $html = $htmlArray['body'];
 
         $this->assertStringContainsString('<option value="IR" selected>', $html);
         $this->assertStringContainsString('<option value="DE">', $html);
