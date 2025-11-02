@@ -13,6 +13,7 @@ use JobMetric\CustomField\Exceptions\BladeViewNotFoundException;
 use JobMetric\CustomField\Support\CustomFieldRegistry;
 use JobMetric\PackageCore\Enums\RegisterClassTypeEnum;
 use JobMetric\PackageCore\Exceptions\RegisterClassTypeNotFoundException;
+use JobMetric\PackageCore\Exceptions\ViewFolderNotFoundException;
 use JobMetric\PackageCore\PackageCore;
 use JobMetric\PackageCore\PackageCoreServiceProvider;
 use ReflectionException;
@@ -24,12 +25,14 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
      *
      * @return void
      * @throws RegisterClassTypeNotFoundException
+     * @throws ViewFolderNotFoundException
      */
     public function configuration(PackageCore $package): void
     {
         $package->name('laravel-custom-field')
             ->hasConfig()
             ->hasTranslation()
+            ->hasView()
             ->registerCommand(GenerateIdeHelpers::class)
             ->registerCommand(MakeCustomField::class)
             ->registerClass('CustomFieldRegistry', CustomFieldRegistry::class, RegisterClassTypeEnum::SINGLETON());
