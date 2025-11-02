@@ -12,13 +12,15 @@ $color = CustomFieldBuilder::color()
     ->required()
     ->build();
 
-echo $color->toHtml();
+$res = $color->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $color->toHtml();
+$arr = $color->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

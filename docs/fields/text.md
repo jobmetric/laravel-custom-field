@@ -22,13 +22,16 @@ $text = CustomFieldBuilder::text()
     ->placeholder('Enter name')
     ->build();
 
-echo $text->toHtml();
+$res = $text->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $text->toHtml();
+$arr = $text->toHtml();
+$html = $arr['body'];
+// $arr['scripts'] and $arr['styles'] provide asset paths
 ```
 
 ## Array Output

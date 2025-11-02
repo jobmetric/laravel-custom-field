@@ -10,13 +10,15 @@ $tel = CustomFieldBuilder::tel()
     ->label('Phone')
     ->build();
 
-echo $tel->toHtml();
+$res = $tel->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $tel->toHtml();
+$arr = $tel->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

@@ -13,13 +13,15 @@ $date = CustomFieldBuilder::date()
     ->info('Select your birth date')
     ->build();
 
-echo $date->toHtml();
+$res = $date->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $date->toHtml();
+$arr = $date->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

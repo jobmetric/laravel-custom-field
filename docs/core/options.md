@@ -28,6 +28,7 @@ $radio = CustomFieldBuilder::radio()
 Notes:
 - When you call `build()` on the `$opt` builder, the option is added and the builder state resets for the next option.
 - If you forget to call `build()` for the last option, the system finalizes it automatically when the closure ends.
+- `toHtml()` returns `['body', 'scripts', 'styles']`; use `$select->toHtml()['body']` for the markup.
 
 ## Array input
 

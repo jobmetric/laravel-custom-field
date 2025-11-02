@@ -21,14 +21,14 @@ This package provides a fluent builder API to define, render, and serialize form
 
 - Core Concepts
   - Builder: `src/CustomFieldBuilder.php`
-  - Field Instances: `src/Fields/*`
+  - Field Instances: `src/CustomFields/*`
   - Options (for select/radio): `src/Option/*`
   - Data attributes (data-*) : `src/Attribute/Data/*`
 
 - Usage Highlights
   - Chain field attributes and properties (name, label, required, placeholder, ...)
   - Add options via closure (bulk) or array
-  - Render as HTML (`toHtml`) or array (`toArray`) for APIs
+  - Render via `toHtml()` which returns `['body', 'scripts', 'styles']`, or export with `toArray()` for APIs
 
 ## Installation
 
@@ -64,6 +64,13 @@ This package includes different parts that I will mention in order:
   - [Data Attributes (data-*)](docs/core/data.md)
   - [Options](docs/core/options.md)
   - [Images](docs/core/images.md)
+  - [Registry](docs/core/registry.md)
+  - [Factory](docs/core/factory.md)
+  - [Templates & Assets](docs/core/templates.md)
+
+- Commands
+  - [Make Custom Field](docs/commands/make-custom-field.md)
+  - [Generate IDE Helpers](docs/commands/generate-ide-helpers.md)
 
 ## Quick Start
 
@@ -98,10 +105,16 @@ $radio = CustomFieldBuilder::radio()
         $opt->mode('pro')->type('radio')->name('plan')->label('Enterprise')->value('enterprise')->selected();
     })
     ->build();
+// Render HTML body and collect assets
+$textHtml = $text->toHtml();
+echo $textHtml['body'];
+// $textHtml['scripts'] and $textHtml['styles'] provide asset paths to include
 
-echo $text->toHtml();
-echo $select->toHtml();
-echo $radio->toHtml();
+$selectHtml = $select->toHtml();
+echo $selectHtml['body'];
+
+$radioHtml = $radio->toHtml();
+echo $radioHtml['body'];
 ```
 
 ## License

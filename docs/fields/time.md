@@ -12,13 +12,15 @@ $time = CustomFieldBuilder::time()
     ->label('Meeting Time')
     ->build();
 
-echo $time->toHtml();
+$res = $time->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $time->toHtml();
+$arr = $time->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

@@ -14,7 +14,8 @@ $image = CustomFieldBuilder::image()
     ->height(80)
     ->build();
 
-echo $image->toHtml();
+$result = $image->toHtml();
+echo $result['body'];
 ```
 
 ---

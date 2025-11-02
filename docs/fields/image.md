@@ -13,13 +13,15 @@ $image = CustomFieldBuilder::image()
     ->height(80)
     ->build();
 
-echo $image->toHtml();
+$res = $image->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $image->toHtml();
+$arr = $image->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

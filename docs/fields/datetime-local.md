@@ -10,13 +10,15 @@ $dt = CustomFieldBuilder::dateTimeLocal()
     ->label('Appointment')
     ->build();
 
-echo $dt->toHtml();
+$res = $dt->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $dt->toHtml();
+$arr = $dt->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

@@ -22,13 +22,15 @@ $radio = CustomFieldBuilder::radio()
     })
     ->build();
 
-echo $radio->toHtml();
+$res = $radio->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $radio->toHtml();
+$arr = $radio->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

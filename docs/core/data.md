@@ -14,6 +14,7 @@ $field = CustomFieldBuilder::text()
 
 // When rendering with toHtml/toArray, placeholders in values are replaced
 $html = $field->toHtml(replaces: ['id' => '42']);
+echo $html['body'];
 ```
 
 ---

@@ -15,12 +15,13 @@ $field = CustomFieldBuilder::text()
     ->required()
     ->build();
 
-$html = $field->toHtml();
+$res = $field->toHtml();
+$html = $res['body'];
 $array = $field->toArray();
 ```
 
 Notes:
-- `toHtml()` renders Blade views from `resources/views` inside the package.
+- `toHtml()` returns an array with keys: `body` (rendered HTML), `scripts`, `styles` (asset paths you may include in your layout).
 - `toArray()` normalizes field, options, data and images to a serializable array (useful for APIs).
 
 ---

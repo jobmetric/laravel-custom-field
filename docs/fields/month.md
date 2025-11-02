@@ -10,13 +10,15 @@ $month = CustomFieldBuilder::month()
     ->label('Salary Month')
     ->build();
 
-echo $month->toHtml();
+$res = $month->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $month->toHtml();
+$arr = $month->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

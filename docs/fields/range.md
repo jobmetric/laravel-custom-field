@@ -14,13 +14,15 @@ $range = CustomFieldBuilder::range()
     ->max(10)
     ->build();
 
-echo $range->toHtml();
+$res = $range->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $range->toHtml();
+$arr = $range->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

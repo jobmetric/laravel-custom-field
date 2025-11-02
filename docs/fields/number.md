@@ -13,13 +13,15 @@ $number = CustomFieldBuilder::number()
     ->info('Enter your age')
     ->build();
 
-echo $number->toHtml();
+$res = $number->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $number->toHtml();
+$arr = $number->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

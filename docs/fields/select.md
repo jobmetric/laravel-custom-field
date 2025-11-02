@@ -26,7 +26,8 @@ $select = CustomFieldBuilder::select()
     })
     ->build();
 
-echo $select->toHtml();
+$res = $select->toHtml();
+echo $res['body'];
 ```
 
 Array options:
@@ -43,7 +44,8 @@ $select = CustomFieldBuilder::select()
 ## Rendering
 
 ```php
-$html = $select->toHtml();
+$arr = $select->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

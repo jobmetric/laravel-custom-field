@@ -10,13 +10,15 @@ $hidden = CustomFieldBuilder::hidden()
     ->value('abc123')
     ->build();
 
-echo $hidden->toHtml();
+$res = $hidden->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $hidden->toHtml();
+$arr = $hidden->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

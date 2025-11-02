@@ -10,13 +10,15 @@ $week = CustomFieldBuilder::week()
     ->label('Week')
     ->build();
 
-echo $week->toHtml();
+$res = $week->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $week->toHtml();
+$arr = $week->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output

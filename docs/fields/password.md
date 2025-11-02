@@ -12,13 +12,15 @@ $password = CustomFieldBuilder::password()
     ->label('Password')
     ->build();
 
-echo $password->toHtml();
+$res = $password->toHtml();
+echo $res['body'];
 ```
 
 ## Rendering
 
 ```php
-$html = $password->toHtml();
+$arr = $password->toHtml();
+$html = $arr['body'];
 ```
 
 ## Array Output
