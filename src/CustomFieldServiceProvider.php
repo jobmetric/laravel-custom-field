@@ -6,6 +6,7 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use JobMetric\CustomField\Commands\GenerateIdeHelpers;
+use JobMetric\CustomField\Commands\MakeCustomField;
 use JobMetric\CustomField\Contracts\FieldContract;
 use JobMetric\CustomField\Exceptions\BladeNamespaceRegistrationException;
 use JobMetric\CustomField\Exceptions\BladeViewNotFoundException;
@@ -30,6 +31,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
             ->hasConfig()
             ->hasTranslation()
             ->registerCommand(GenerateIdeHelpers::class)
+            ->registerCommand(MakeCustomField::class)
             ->registerClass('CustomFieldRegistry', CustomFieldRegistry::class, RegisterClassTypeEnum::SINGLETON());
     }
 
