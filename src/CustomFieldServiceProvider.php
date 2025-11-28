@@ -78,64 +78,66 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
      */
     public function afterBootPackage(): void
     {
-        /** @var CustomFieldRegistry $registry */
-        $registry = $this->app->make('CustomFieldRegistry');
+        $this->app->booted(function () {
+            /** @var CustomFieldRegistry $registry */
+            $registry = $this->app->make('CustomFieldRegistry');
 
-        foreach ($registry->all() as $customField) {
-            $fqcn = get_class($customField);
-            $dirPath = class_directory_path($fqcn);
+            foreach ($registry->all() as $customField) {
+                $fqcn = get_class($customField);
+                $dirPath = class_directory_path($fqcn);
 
-            if (! $dirPath) {
-                // If class path cannot be resolved, skip silently or throw a dedicated exception if you prefer.
-                continue;
+                if (! $dirPath) {
+                    // If class path cannot be resolved, skip silently or throw a dedicated exception if you prefer.
+                    continue;
+                }
+
+                // Expect a "views" directory containing a blade view per template.
+                $viewsPath = $dirPath . DIRECTORY_SEPARATOR . 'views';
+                $defaultTemplate = $viewsPath . DIRECTORY_SEPARATOR . 'default.blade.php';
+
+                if (! is_dir($viewsPath)) {
+                    throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $viewsPath . ' (directory missing)');
+                }
+
+                // default template must always exist
+                if (! file_exists($defaultTemplate)) {
+                    throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $defaultTemplate);
+                }
+
+                if (! $customField instanceof FieldContract) {
+                    // Contract violation; you may throw here too if you want strictness.
+                    continue;
+                }
+
+                $type = $customField::type();
+                $ns = 'custom-field-' . Str::kebab($type);
+
+                View::addNamespace($ns, $viewsPath);
+
+                // Validate namespace hint registration
+                if (! array_key_exists($ns, View::getFinder()->getHints())) {
+                    throw new BladeNamespaceRegistrationException($ns, $viewsPath);
+                }
+
+                // Ensure at least default view is resolvable; template-specific view is optional
+                if (! View::exists("{$ns}::default")) {
+                    throw new BladeNamespaceRegistrationException($ns, $viewsPath);
+                }
+
+                // Publish assets if present
+                $assetsPath = $dirPath . DIRECTORY_SEPARATOR . 'assets';
+                if (is_dir($assetsPath)) {
+                    $target = public_path('assets/vendor/custom-fields/' . Str::kebab($type));
+
+                    // Map directory-to-directory; Laravel will copy recursively.
+                    $this->publishes([$assetsPath => $target], [
+                        'custom-field-assets',
+                        'custom-field-assets:' . $type,
+                    ]);
+                }
+
+                $customField->init($customField);
             }
-
-            // Expect a "views" directory containing a blade view per template.
-            $viewsPath = $dirPath . DIRECTORY_SEPARATOR . 'views';
-            $defaultTemplate = $viewsPath . DIRECTORY_SEPARATOR . 'default.blade.php';
-
-            if (! is_dir($viewsPath)) {
-                throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $viewsPath . ' (directory missing)');
-            }
-
-            // default template must always exist
-            if (! file_exists($defaultTemplate)) {
-                throw new BladeViewNotFoundException('N/A (namespace not bound yet)', $defaultTemplate);
-            }
-
-            if (! $customField instanceof FieldContract) {
-                // Contract violation; you may throw here too if you want strictness.
-                continue;
-            }
-
-            $type = $customField::type();
-            $ns = 'custom-field-' . Str::kebab($type);
-
-            View::addNamespace($ns, $viewsPath);
-
-            // Validate namespace hint registration
-            if (! array_key_exists($ns, View::getFinder()->getHints())) {
-                throw new BladeNamespaceRegistrationException($ns, $viewsPath);
-            }
-
-            // Ensure at least default view is resolvable; template-specific view is optional
-            if (! View::exists("{$ns}::default")) {
-                throw new BladeNamespaceRegistrationException($ns, $viewsPath);
-            }
-
-            // Publish assets if present
-            $assetsPath = $dirPath . DIRECTORY_SEPARATOR . 'assets';
-            if (is_dir($assetsPath)) {
-                $target = public_path('assets/vendor/custom-fields/' . Str::kebab($type));
-
-                // Map directory-to-directory; Laravel will copy recursively.
-                $this->publishes([$assetsPath => $target], [
-                    'custom-field-assets',
-                    'custom-field-assets:' . $type,
-                ]);
-            }
-
-            $customField->init($customField);
-        }
+        });
     }
 }
