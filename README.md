@@ -17,20 +17,61 @@
 
 # Laravel Custom Field
 
-This package provides a fluent builder API to define, render, and serialize form fields (text, number, select, radio, image, etc.) with consistent HTML output and an extendable option/data system.
+**Build Forms. Beautifully and Consistently.**
 
-- Core Concepts
-  - Builder: `src/CustomFieldBuilder.php`
-  - Field Instances: `src/CustomFields/*`
-  - Options (for select/radio): `src/Option/*`
-  - Data attributes (data-*) : `src/Attribute/Data/*`
+Laravel Custom Field simplifies form field creation and rendering in Laravel applications. Stop writing HTML manually and start building forms programmatically with confidence. It provides a fluent builder API to define, render, and serialize form fields with consistent HTML output—perfect for building dynamic forms, admin panels, and API-driven form builders. This is where powerful form building meets developer-friendly simplicity—giving you complete control over form fields without the complexity.
 
-- Usage Highlights
-  - Chain field attributes and properties (name, label, required, placeholder, ...)
-  - Add options via closure (bulk) or array
-  - Render via `toHtml()` which returns `['body', 'scripts', 'styles']`, or export with `toArray()` for APIs
+## Why Laravel Custom Field?
 
-## Installation
+### Fluent Builder API
+
+Laravel Custom Field provides a clean, chainable API for building form fields. Set attributes, properties, options, and data attributes in a single fluent chain—no more scattered HTML or inconsistent form rendering.
+
+### Consistent HTML Output
+
+All fields render with consistent HTML structure, making it easy to style and maintain forms across your application. The package handles all the boilerplate, so you focus on your business logic.
+
+### Extensible Architecture
+
+Create custom field types by extending the base classes. The package uses a registry system that makes it easy to add new field types and customize existing ones.
+
+### Asset Management
+
+Fields can include their own JavaScript and CSS assets. The package automatically collects and provides asset paths, making it easy to include field-specific functionality.
+
+## What is Custom Field Management?
+
+Custom field management is the process of programmatically creating, configuring, and rendering form fields. Traditional approaches often involve:
+
+- Writing HTML manually (error-prone, inconsistent)
+- Using form builders (limited flexibility)
+- Creating custom components (time-consuming)
+
+Laravel Custom Field solves these challenges by providing:
+
+- **Fluent API**: Chain methods to build fields
+- **Type Safety**: Strongly-typed field classes
+- **Consistent Output**: Standardized HTML structure
+- **Extensibility**: Easy to create custom field types
+- **Asset Management**: Automatic script/style collection
+- **Template System**: Customizable blade templates
+
+Consider a dynamic form builder where administrators can create forms with different field types. With Laravel Custom Field, you can build fields programmatically, render them consistently, and serialize them for storage or API responses. The power of custom field management lies not only in flexible field creation but also in making it easy to extend, customize, and maintain throughout your application.
+
+## What Awaits You?
+
+By adopting Laravel Custom Field, you will:
+
+- **Build dynamic forms** - Create forms programmatically from database configurations
+- **Simplify form rendering** - Consistent HTML output across all fields
+- **Improve maintainability** - Fluent API reduces code complexity
+- **Enable extensibility** - Create custom field types easily
+- **Manage assets automatically** - Scripts and styles collected automatically
+- **Maintain clean code** - Simple, intuitive API that follows Laravel conventions
+
+## Quick Start
+
+Install Laravel Custom Field via Composer:
 
 ```bash
 composer require jobmetric/laravel-custom-field
@@ -38,85 +79,26 @@ composer require jobmetric/laravel-custom-field
 
 ## Documentation
 
-This package includes different parts that I will mention in order:
+Ready to transform your Laravel applications? Our comprehensive documentation is your gateway to mastering Laravel Custom Field:
 
-- Fields
-  - [Text](docs/fields/text.md)
-  - [Number](docs/fields/number.md)
-  - [Select](docs/fields/select.md)
-  - [Radio](docs/fields/radio.md)
-  - [Hidden](docs/fields/hidden.md)
-  - [Date](docs/fields/date.md)
-  - [DateTimeLocal](docs/fields/datetime-local.md)
-  - [Time](docs/fields/time.md)
-  - [Week](docs/fields/week.md)
-  - [Month](docs/fields/month.md)
-  - [Color](docs/fields/color.md)
-  - [Password](docs/fields/password.md)
-  - [Range](docs/fields/range.md)
-  - [Tel](docs/fields/tel.md)
-  - [Image](docs/fields/image.md)
+**[📚 Read Full Documentation →](https://jobmetric.github.io/packages/laravel-custom-field/)**
 
-- Core
-  - [Builder Basics](docs/core/builder.md)
-  - [Attributes](docs/core/attributes.md)
-  - [Properties](docs/core/properties.md)
-  - [Data Attributes (data-*)](docs/core/data.md)
-  - [Options](docs/core/options.md)
-  - [Images](docs/core/images.md)
-  - [Registry](docs/core/registry.md)
-  - [Factory](docs/core/factory.md)
-  - [Templates & Assets](docs/core/templates.md)
+The documentation includes:
 
-- Commands
-  - [Make Custom Field](docs/commands/make-custom-field.md)
-  - [Generate IDE Helpers](docs/commands/generate-ide-helpers.md)
+- **Getting Started** - Quick introduction and installation guide
+- **CustomFieldBuilder** - Fluent API for building fields
+- **Field Types** - All supported HTML input types
+- **Attributes & Properties** - Configure field attributes and properties
+- **Options Builder** - Build select, radio, and checkbox options
+- **Data Attributes** - Add data attributes for JavaScript integration
+- **Registry & Factory** - Extend and customize field types
+- **Commands** - Generate custom fields and IDE helpers
+- **Real-World Examples** - See how it works in practice
 
-## Quick Start
+## Contributing
 
-```php
-use JobMetric\\CustomField\\CustomFieldBuilder;
-
-// Text field
-$text = CustomFieldBuilder::text()
-    ->name('user[name]')
-    ->label('Name')
-    ->info('Enter your full name')
-    ->required()
-    ->placeholder('Enter name')
-    ->build();
-
-// Select with bulk options via a single closure
-$select = CustomFieldBuilder::select()
-    ->name('country')
-    ->label('Country')
-    ->info('Choose your country')
-    ->options(function ($opt) {
-        $opt->label('Iran')->value('IR')->selected()->build();
-        $opt->label('Germany')->value('DE')->build();
-    })
-    ->build();
-
-// Radio (pro mode)
-$radio = CustomFieldBuilder::radio()
-    ->name('plan')
-    ->options(function ($opt) {
-        $opt->mode('pro')->type('radio')->name('plan')->label('Basic')->value('basic');
-        $opt->mode('pro')->type('radio')->name('plan')->label('Enterprise')->value('enterprise')->selected();
-    })
-    ->build();
-// Render HTML body and collect assets
-$textHtml = $text->toHtml();
-echo $textHtml['body'];
-// $textHtml['scripts'] and $textHtml['styles'] provide asset paths to include
-
-$selectHtml = $select->toHtml();
-echo $selectHtml['body'];
-
-$radioHtml = $radio->toHtml();
-echo $radioHtml['body'];
-```
+Thank you for participating in `laravel-custom-field`. A contribution guide can be found [here](CONTRIBUTING.md).
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/jobmetric/laravel-custom-field/blob/master/README.md) for more information.
+The `laravel-custom-field` is open-sourced software licensed under the MIT license. See [License File](LICENCE.md) for more information.
