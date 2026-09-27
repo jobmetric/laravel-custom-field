@@ -80,6 +80,22 @@ trait BaseField
      */
     protected array $params = [];
 
+    /** Mark this field as write-only sensitive data. */
+    public function sensitive(bool $sensitive = true): static
+    {
+        $this->params['sensitive'] = $sensitive;
+
+        return $this;
+    }
+
+    /** Mark this field as an upload managed by the consuming form service. */
+    public function managedFile(bool $managed = true): static
+    {
+        $this->params['managed_file'] = $managed;
+
+        return $this;
+    }
+
     /**
      * the options of the field
      *

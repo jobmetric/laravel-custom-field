@@ -53,6 +53,7 @@ class CustomFieldServiceProvider extends PackageCoreServiceProvider
         $registry->register(new \JobMetric\CustomField\CustomFields\Date\Date);
         $registry->register(new \JobMetric\CustomField\CustomFields\DateTimeLocal\DateTimeLocal);
         $registry->register(new \JobMetric\CustomField\CustomFields\Email\Email);
+        $registry->register(new \JobMetric\CustomField\CustomFields\File\File);
         $registry->register(new \JobMetric\CustomField\CustomFields\Hidden\Hidden);
         $registry->register(new \JobMetric\CustomField\CustomFields\Image\Image);
         $registry->register(new \JobMetric\CustomField\CustomFields\Month\Month);

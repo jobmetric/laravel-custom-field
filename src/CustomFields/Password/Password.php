@@ -19,5 +19,10 @@ class Password extends BaseCustomField implements FieldContract
     {
         return 'password';
     }
-}
 
+    /** Mark passwords as sensitive before exporting their definition. */
+    public function beforeBuild(): void
+    {
+        $this->sensitive();
+    }
+}
